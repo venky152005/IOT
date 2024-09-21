@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iot_application/carousel.dart';
-import 'package:iot_application/device.dart';
 import 'package:iot_application/glass.dart';
 
-class FindDevice extends StatelessWidget {
-  const FindDevice({super.key});
+class DeviceWidget extends StatelessWidget {
+  const DeviceWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,6 @@ class FindDevice extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  SliderWidget(),
                 ],
               ),
             ),
@@ -77,13 +75,7 @@ class FindDevice extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DeviceWidget()),
-                        );
-                      },
+                      onPressed: () {},
                       icon: Image.asset(
                         'icons/wifi-router.png',
                         color: const Color(0xFFB9B8B8),

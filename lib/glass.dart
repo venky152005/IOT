@@ -45,9 +45,7 @@ class GlassMorphismWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-              child: box,
-            )
+            Container(child: box),
           ],
         ),
       ),

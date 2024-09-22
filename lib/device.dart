@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/carousel.dart';
+import 'package:iot_application/bar_chart.dart';
 import 'package:iot_application/glass.dart';
 
 class DeviceWidget extends StatelessWidget {
@@ -26,19 +26,24 @@ class DeviceWidget extends StatelessWidget {
                 color: const Color(0xFF000000).withOpacity(0.9),
               ),
             ),
-            const Positioned(
+            Positioned(
               top: 20,
               left: 0,
               right: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Home',
                     style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 30),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
+                  ),
+                  SizedBox(
+                    height: 290,
+                    width: MediaQuery.of(context).size.width * 0.98,
+                    child: BarChartWidget(),
                   ),
                 ],
               ),

@@ -28,15 +28,15 @@ class FindDevice extends StatelessWidget {
               ),
             ),
             const Positioned(
-              top: 20,
+              top: 30,
               left: 0,
               right: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Home',
-                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 30),
+                    'Ultrasonic Generator',
+                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
                   ),
                   SizedBox(
                     height: 30,
@@ -81,7 +81,8 @@ class FindDevice extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const DeviceWidget()),
+                            builder: (context) => const DeviceWidget(),
+                          ),
                         );
                       },
                       icon: Image.asset(

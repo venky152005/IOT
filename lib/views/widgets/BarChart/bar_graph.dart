@@ -3,7 +3,7 @@
 import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:iot_application/Bar_data.dart';
+import 'package:iot_application/views/widgets/BarChart/bar_data.dart';
 
 class MyBarGraph extends StatelessWidget {
   final List weeksummary;
@@ -44,12 +44,13 @@ class MyBarGraph extends StatelessWidget {
                 barRods: [
                   BarChartRodData(
                     toY: data.y,
+                    color: const Color(0xFFB8F01F),
                     borderRadius: BorderRadius.circular(5),
                     width: 15,
                     backDrawRodData: BackgroundBarChartRodData(
                       show: true,
                       toY: 100,
-                      color: Colors.blue[50],
+                      color: const Color(0xFFB9B8B8),
                     ),
                   ),
                 ],

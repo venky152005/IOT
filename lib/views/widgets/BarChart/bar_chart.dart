@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/bar_graph.dart';
+import 'package:iot_application/views/widgets/BarChart/bar_graph.dart';
 
 // ignore: must_be_immutable
 class BarChartWidget extends StatelessWidget {

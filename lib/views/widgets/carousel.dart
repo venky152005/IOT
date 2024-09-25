@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:intl/intl.dart';
-import 'package:iot_application/glass.dart';
+import 'package:iot_application/views/widgets/glass.dart';
 
 class SliderWidget extends StatelessWidget {
   const SliderWidget({super.key});

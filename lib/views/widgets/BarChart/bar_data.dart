@@ -1,4 +1,4 @@
-import 'package:iot_application/individual_bar.dart';
+import 'package:iot_application/views/widgets/BarChart/individual_bar.dart';
 
 class BarData {
   late final double sunamount;

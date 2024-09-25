@@ -1,0 +1,126 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iot_application/constants/api_string.dart';
+import 'package:iot_application/constants/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+
+class AuthController extends GetxController {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final otpController = TextEditingController();
+
+  RxBool isLoading = false.obs;
+
+  Future<bool> register() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Map<String, String> header = {
+      'Content-type': 'application/json; charset=utf-8'
+    };
+    isLoading.value = true;
+
+    Map body = {
+      "email": emailController.text.toString(),
+      "name": nameController.text.toString(),
+      "password": passwordController.text.toString(),
+    };
+
+    debugPrint(body.toString());
+
+    preferences.setString(ApiString.email, emailController.text);
+
+    http.Response response = await http.post(
+      Uri.parse(ApiEndPoint.register),
+      headers: header,
+      body: jsonEncode(body),
+    );
+
+    var data = jsonDecode(response.body);
+
+    // debugPrint(response.body);
+    if (data['status'] == true) {
+      /*   preferences.setString(ApiString.token, data['token']);
+        preferences.setString(ApiString.id, data['data']["_id"]);
+        preferences.setString(ApiString.type, data['data']["user_type"]); */
+      Get.snackbar("Success", "User Registered successfully");
+      isLoading.value = false;
+      return true;
+    } else {
+      Get.snackbar("Error", data['message']);
+      isLoading.value = false;
+
+      return false;
+    }
+  }
+
+  login() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Map<String, String> header = {
+      'Content-type': 'application/json; charset=utf-8'
+    };
+    isLoading.value = true;
+
+    Map body = {
+      "email": emailController.text.toString(),
+      "password": passwordController.text.toString(),
+    };
+
+    debugPrint(body.toString());
+
+    preferences.setString(ApiString.email, emailController.text);
+
+    http.Response response = await http.post(
+      Uri.parse(ApiEndPoint.login),
+      headers: header,
+      body: jsonEncode(body),
+    );
+
+    var data = json.decode(response.body);
+
+    debugPrint(response.body);
+    debugPrint(data['status'].toString());
+  }
+
+  verifyOtp() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Map<String, String> header = {
+      'Content-type': 'application/json; charset=utf-8'
+    };
+
+    Map body = {
+      "email": emailController.text.toString(),
+      "otp": otpController.text.toString(),
+    };
+    debugPrint(body.toString());
+
+    http.Response response = await http.post(
+      Uri.parse(ApiEndPoint.otpVerification),
+      headers: header,
+      body: jsonEncode(body),
+    );
+
+    var data = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        // clear();
+        /*  preferences.setString(ApiString.token, data['token']);
+          preferences.setString(ApiString.id, data['data']["_id"]);
+          preferences.setString(ApiString.email, data['data']["email"] ?? "");
+          preferences.setString(
+              ApiString.mobileNo, data['data']["mobile_number"] ?? ""); */
+        Get.snackbar("Success", data['message']);
+      }
+      isLoading.value = false;
+      return true;
+    } else {
+      Get.snackbar("Error", data['message']);
+      isLoading.value = false;
+
+      return false;
+    }
+  }
+}

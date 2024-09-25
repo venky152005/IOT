@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/carousel.dart';
-import 'package:iot_application/device.dart';
-import 'package:iot_application/glass.dart';
+import 'package:iot_application/views/widgets/BarChart/bar_chart.dart';
+import 'package:iot_application/views/widgets/glass.dart';
 
-class FindDevice extends StatelessWidget {
-  const FindDevice({super.key});
+class DeviceWidget extends StatelessWidget {
+  const DeviceWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +26,25 @@ class FindDevice extends StatelessWidget {
                 color: const Color(0xFF000000).withOpacity(0.9),
               ),
             ),
-            const Positioned(
-              top: 30,
+            Positioned(
+              top: 20,
               left: 0,
               right: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'Ultrasonic Generator',
-                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
+                  const Text(
+                    'Home',
+                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 30),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  SliderWidget(),
+                  SizedBox(
+                    height: 290,
+                    width: MediaQuery.of(context).size.width * 0.98,
+                    child: BarChartWidget(),
+                  ),
                 ],
               ),
             ),
@@ -77,14 +80,7 @@ class FindDevice extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DeviceWidget(),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       icon: Image.asset(
                         'icons/wifi-router.png',
                         color: const Color(0xFFB9B8B8),

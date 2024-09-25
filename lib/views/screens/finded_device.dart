@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/bar_chart.dart';
-import 'package:iot_application/glass.dart';
+import 'package:iot_application/views/screens/home_screen.dart';
+import 'package:iot_application/views/widgets/carousel.dart';
+import 'package:iot_application/views/screens/device_screen.dart';
+import 'package:iot_application/views/widgets/glass.dart';
 
-class DeviceWidget extends StatelessWidget {
-  const DeviceWidget({super.key});
+class FindDevice extends StatelessWidget {
+  const FindDevice({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +28,21 @@ class DeviceWidget extends StatelessWidget {
                 color: const Color(0xFF000000).withOpacity(0.9),
               ),
             ),
-            Positioned(
-              top: 20,
+            const Positioned(
+              top: 30,
               left: 0,
               right: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
-                    'Home',
-                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 30),
-                  ),
-                  const SizedBox(
-                    height: 30,
+                  Text(
+                    'Ultrasonic Generator',
+                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
                   ),
                   SizedBox(
-                    height: 290,
-                    width: MediaQuery.of(context).size.width * 0.98,
-                    child: BarChartWidget(),
+                    height: 30,
                   ),
+                  SliderWidget(),
                 ],
               ),
             ),
@@ -59,7 +57,14 @@ class DeviceWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeWidget(),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/home_icon.png',
                         color: const Color(0xFFB9B8B8),
@@ -80,7 +85,14 @@ class DeviceWidget extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DeviceWidget(),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/wifi-router.png',
                         color: const Color(0xFFB9B8B8),

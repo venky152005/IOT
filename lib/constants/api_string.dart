@@ -1,9 +1,11 @@
 class ApiEndPoint {
-  static String baseUrl = "https://api.ultrasonics.in/api/v1";
+  static String baseUrl = "https://api.ultrasonics.in/api/v1/user";
 
-  static String login = "$baseUrl/user/login";
+  static String login = "$baseUrl/login";
 
-  static String register = "$baseUrl/user/register";
+  static String register = "$baseUrl/register";
 
-  static String otpVerification = "$baseUrl/user/verify-login";
+  static String otpVerification = "$baseUrl/verify-login";
+
+  static String deviceList = "$baseUrl/devices/list";
 }

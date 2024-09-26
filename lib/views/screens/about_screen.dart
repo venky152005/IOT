@@ -1,65 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iot_application/controllers/device_controller.dart';
-import 'package:iot_application/views/screens/home_screen.dart';
-import 'package:iot_application/views/widgets/carousel.dart';
-import 'package:iot_application/views/screens/device_screen.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 
-class FindDevice extends StatefulWidget {
-  const FindDevice({super.key});
-
-  @override
-  State<FindDevice> createState() => _FindDeviceState();
-}
-
-class _FindDeviceState extends State<FindDevice> {
-  final deviceController = Get.put(DeviceController());
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      deviceController.deviceList();
-    });
-  }
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF282725),
       body: Center(
         child: Stack(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'images/modern-styled-small-entryway.jpg',
-                fit: BoxFit.cover,
-              ),
-            ),
             Positioned(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                color: const Color(0xFF000000).withOpacity(0.9),
-              ),
-            ),
-            const Positioned(
-              top: 30,
+              top: 20,
               left: 0,
               right: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    'Ultrasonic Generator',
-                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
+                  const Text(
+                    'About Ultrasonic Generator',
+                    style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 25,
+                        fontFamily: 'ClashDisplay'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  SliderWidget(),
+                  Column(
+                    children: [
+                      Opacity(
+                        opacity: 0.5,
+                        child: Image.asset(
+                          'images/cleaning.png',
+                          height: 200,
+                          width: 200,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -74,14 +54,7 @@ class _FindDeviceState extends State<FindDevice> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeWidget(),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       icon: Image.asset(
                         'icons/home_icon.png',
                         color: const Color(0xFFB9B8B8),
@@ -102,14 +75,7 @@ class _FindDeviceState extends State<FindDevice> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DeviceWidget(),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       icon: Image.asset(
                         'icons/wifi-router.png',
                         color: const Color(0xFFB9B8B8),

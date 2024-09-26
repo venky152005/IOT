@@ -264,7 +264,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             true)) {
                                       authController.isLoading.value == false;
                                     } else {
-                                      var res = await authController.register();
+                                      bool res =
+                                          await authController.register();
                                       debugPrint(res.toString());
                                       if (res == true) {
                                         Navigator.of(context)

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iot_application/views/screens/device_screen.dart';
+import 'package:iot_application/constants/app_string.dart';
+import 'package:iot_application/views/screens/about_screen.dart';
 import 'package:iot_application/views/screens/home_screen.dart';
 import 'package:iot_application/views/screens/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(
@@ -18,6 +20,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String? token;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
+
+  checkLogin() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+
+    token = pref.getString(ApiString.token);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -27,7 +43,8 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const AboutScreen(),
+      // home: token == null ? const MyHomePage() : const HomeWidget(),
     );
   }
 }

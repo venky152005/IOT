@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/auth_controller.dart';
-import 'package:iot_application/views/screens/finded_device.dart';
+import 'package:iot_application/controllers/device_controller.dart';
+import 'package:iot_application/views/screens/home_screen.dart';
+import 'package:iot_application/views/screens/otp_screen.dart';
 import 'package:iot_application/views/screens/signup_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -156,63 +158,86 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Column(
                   children: [
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: const Color(0xFFD9FE74)),
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        child: TextButton(
-                          onPressed: () {
-                            if (formkey.currentState!.validate()) {
-                              formkey.currentState!.save();
+                    Obx(() {
+                      return authController.isLoading.value == true
+                          ? const CircularProgressIndicator(
+                              color: Colors.blueGrey,
+                              strokeWidth: 2.0,
+                            )
+                          : Center(
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: const Color(0xFFD9FE74)),
+                                height: 50,
+                                width: MediaQuery.of(context).size.width,
+                                child: TextButton(
+                                  onPressed: () async {
+                                    if (formkey.currentState!.validate()) {
+                                      formkey.currentState!.save();
 
-                              if ((authController
-                                          .emailController.text.isEmpty ==
-                                      true) ||
-                                  (authController
-                                          .passwordController.text.isEmpty ==
-                                      true)) {
-                                authController.isLoading.value == false;
-                              } else {
-                                var res = authController.login();
-                                debugPrint(res.toString());
-                                if (res == true) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const FindDevice()),
-                                  );
-                                }
-                              }
-                              // if (_email == 'venky15.12.2005@gmail.com' &&
-                              //     _password == 'venky152005') {
-                              //   Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => const FindDevice(),
-                              //     ),
-                              //   );
-                              // } else {
-                              //   ScaffoldMessenger.of(context).showSnackBar(
-                              //     const SnackBar(
-                              //       content:
-                              //           Text('Invalid Username or Password'),
-                              //     ),
-                              //   );
-                              // }
-                            }
-                          },
-                          child: const Text(
-                            'Log In',
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                          ),
-                        ),
-                      ),
-                    ),
+                                      if ((authController.emailController.text
+                                                  .isEmpty ==
+                                              true) ||
+                                          (authController.passwordController
+                                                  .text.isEmpty ==
+                                              true)) {
+                                        authController.isLoading.value == false;
+                                      } else {
+                                        bool res = await authController.login();
+                                        debugPrint(res.toString());
+                                        if (res == true) {
+                                          debugPrint(authController
+                                              .isVerified.value
+                                              .toString());
+                                          if (authController.isVerified.value ==
+                                              true) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const HomeWidget(),
+                                              ),
+                                            );
+                                          } else {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const OtpWidget()),
+                                            );
+                                          }
+                                        }
+                                      }
+                                      // if (_email == 'venky15.12.2005@gmail.com' &&
+                                      //     _password == 'venky152005') {
+                                      //   Navigator.push(
+                                      //     context,
+                                      //     MaterialPageRoute(
+                                      //       builder: (context) => const FindDevice(),
+                                      //     ),
+                                      //   );
+                                      // } else {
+                                      //   ScaffoldMessenger.of(context).showSnackBar(
+                                      //     const SnackBar(
+                                      //       content:
+                                      //           Text('Invalid Username or Password'),
+                                      //     ),
+                                      //   );
+                                      // }
+                                    }
+                                  },
+                                  child: const Text(
+                                    'Log In',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 18),
+                                  ),
+                                ),
+                              ),
+                            );
+                    }),
                     const SizedBox(
                       height: 10,
                     ),
@@ -255,8 +280,9 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class HomescreenWidget extends StatelessWidget {
-  const HomescreenWidget({super.key});
+  HomescreenWidget({super.key});
 
+  final deviceController = Get.put(DeviceController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -290,13 +316,8 @@ class HomescreenWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   color: const Color(0xFFD9FE74)),
               child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FindDevice(),
-                    ),
-                  );
+                onPressed: () async {
+                  await deviceController.deviceList();
                 },
                 child: const Text(
                   'Find Ultrasonic Generator',

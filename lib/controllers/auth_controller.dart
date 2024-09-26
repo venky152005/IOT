@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class AuthController extends GetxController {
   final otpController = TextEditingController();
 
   RxBool isLoading = false.obs;
+  RxBool isVerified = false.obs;
 
   Future<bool> register() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -45,7 +48,8 @@ class AuthController extends GetxController {
       /*   preferences.setString(ApiString.token, data['token']);
         preferences.setString(ApiString.id, data['data']["_id"]);
         preferences.setString(ApiString.type, data['data']["user_type"]); */
-      Get.snackbar("Success", "User Registered successfully");
+      Get.snackbar("Success", "User Registered successfully",
+          backgroundColor: const Color(0xFFFFFFFF), colorText: Colors.black);
       isLoading.value = false;
       return true;
     } else {
@@ -56,7 +60,7 @@ class AuthController extends GetxController {
     }
   }
 
-  login() async {
+  Future<bool> login() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     Map<String, String> header = {
       'Content-type': 'application/json; charset=utf-8'
@@ -81,7 +85,28 @@ class AuthController extends GetxController {
     var data = json.decode(response.body);
 
     debugPrint(response.body);
-    debugPrint(data['status'].toString());
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        // clear();
+        preferences.setString(ApiString.id, data['data']["user_id"]);
+        preferences.setString(ApiString.email, data['data']["email"] ?? "");
+
+        if (data['data']['is_verified'] == 1) {
+          preferences.setString(ApiString.token, data['token']);
+          isVerified.value = true;
+        }
+        Get.snackbar("Success", data['message'],
+            backgroundColor: const Color(0xFFFFFFFF), colorText: Colors.black);
+
+        isLoading.value = false;
+        return true;
+      }
+    }
+
+    Get.snackbar("Error", data['message'] ?? 'Server Error');
+    isLoading.value = false;
+
+    return false;
   }
 
   verifyOtp() async {

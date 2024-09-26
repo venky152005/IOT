@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iot_application/controllers/device_controller.dart';
+import 'package:iot_application/views/widgets/glass.dart';
 
 class GridViewWidget extends StatefulWidget {
   const GridViewWidget({super.key});
@@ -8,6 +11,16 @@ class GridViewWidget extends StatefulWidget {
 }
 
 class _GridViewWidgetState extends State<GridViewWidget> {
+  final deviceController = Get.put(DeviceController());
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      deviceController.deviceList();
+    });
+  }
+
   List images = [
     'images/generator1.jpg',
     'images/generator1.jpg',
@@ -17,35 +30,64 @@ class _GridViewWidgetState extends State<GridViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      itemCount: 4,
-      itemBuilder: (context, index) => PositionWidget(
-        link: images[index],
-      ),
+    return Obx(
+      () {
+        return deviceController.devicesList.isEmpty
+            ? const Center(child: Text('No Data'))
+            : Center(
+                child: GridView.builder(
+                  padding: const EdgeInsets.all(10),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemCount: deviceController.devicesList.length,
+                  itemBuilder: (context, index) => ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: PositionWidget(
+                        link: images[index],
+                        name: deviceController.devicesList[index].name ?? '',
+                      ),
+                    ),
+                  ),
+                ),
+              );
+      },
     );
   }
 }
 
 class PositionWidget extends StatelessWidget {
   final String link;
+  final String name;
 
-  const PositionWidget({super.key, required this.link});
+  const PositionWidget({super.key, required this.link, required this.name});
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Stack(
-        children: [
-          Image.asset(
-            link,
-            height: 200,
-            width: 200,
-            fit: BoxFit.cover,
-          )
-        ],
-      ),
+    return Stack(
+      children: [
+        GlassMorphismWidget(
+          height: 500,
+          width: 250,
+          box: Column(
+            children: [
+              Center(
+                child: Image.asset(
+                  link,
+                  height: 160,
+                  width: 180,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Text(
+                name,
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

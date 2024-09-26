@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iot_application/views/screens/device_screen.dart';
+import 'package:iot_application/views/widgets/carousel.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 import 'package:iot_application/views/widgets/gridview.dart';
 
@@ -28,22 +29,35 @@ class HomeWidget extends StatelessWidget {
                   color: const Color(0xFF000000).withOpacity(0.9),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 top: 30,
                 left: 0,
                 right: 0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Ultrasonic Generator',
-                      style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    GridViewWidget()
-                  ],
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: const Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Ultrasonic Generator',
+                        style:
+                            TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      SliderWidget(),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: GridViewWidget(),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Positioned(

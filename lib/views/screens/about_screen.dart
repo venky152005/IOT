@@ -38,6 +38,27 @@ class AboutScreen extends StatelessWidget {
                           width: 200,
                         ),
                       ),
+                      Text(
+                        'Hello',
+                        style: TextStyle(
+                          fontSize: 64,
+                          fontFamily: 'ClashDisplay',
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFFD9FE74),
+                          shadows: [
+                            Shadow(
+                              blurRadius: 20.0,
+                              color: const Color(0xFFD9FE74).withOpacity(0.8),
+                              offset: const Offset(0, 0),
+                            ),
+                            Shadow(
+                              blurRadius: 20.0,
+                              color: const Color(0xFFD9FE74).withOpacity(0.8),
+                              offset: const Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   )
                 ],

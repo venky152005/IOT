@@ -27,23 +27,188 @@ class DeviceWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 20,
+              top: 40,
               left: 0,
               right: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    'Home',
-                    style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 30),
+                    'Ultrasonic Generator',
+                    style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 30,
+                        fontFamily: 'ClashDisplay'),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 60,
                   ),
                   SizedBox(
                     height: 290,
                     width: MediaQuery.of(context).size.width * 0.98,
                     child: BarChartWidget(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GlassMorphismWidget(
+                        height: 74,
+                        width: 190,
+                        box: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                'Total Electricity',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'ClashDisplay',
+                                    fontSize: 20),
+                              ),
+                            ),
+                            Text(
+                              '100 Kwh',
+                              style: TextStyle(
+                                color: Color(0xFFD9FE74),
+                                fontFamily: 'ClashDisplay',
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GlassMorphismWidget(
+                        height: 74,
+                        width: 190,
+                        box: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                'Total Hours',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'ClashDisplay',
+                                    fontSize: 20),
+                              ),
+                            ),
+                            Text(
+                              '10 Hours',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFFD9FE74),
+                                fontFamily: 'ClashDisplay',
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  GlassMorphismWidget(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width * 0.92,
+                    box: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          child: Text(
+                            '      Monthly Expenses',
+                            style: TextStyle(
+                                fontFamily: 'ClashDisplay',
+                                fontSize: 25,
+                                color: Colors.white),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                              'icons/arrow_down.png',
+                              color: Colors.green,
+                              height: 50,
+                              width: 50,
+                            ),
+                            const Column(
+                              children: [
+                                Text(
+                                  'December',
+                                  style: TextStyle(
+                                      fontFamily: 'ClashDisplay',
+                                      fontSize: 25,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  '100 . 5 kwh',
+                                  style: TextStyle(
+                                    fontFamily: 'ClashDisplay',
+                                    fontSize: 20,
+                                    color: Color.fromRGBO(100, 181, 246, 1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Text(
+                              '100 Kwh',
+                              style: TextStyle(
+                                fontFamily: 'ClashDisplay',
+                                fontSize: 25,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                              'icons/arrow_up.png',
+                              color: Colors.red,
+                              height: 50,
+                              width: 50,
+                            ),
+                            const Column(
+                              children: [
+                                Text(
+                                  'November',
+                                  style: TextStyle(
+                                      fontFamily: 'ClashDisplay',
+                                      fontSize: 25,
+                                      color: Colors.white),
+                                ),
+                                Text(
+                                  '156 . 3 kwh',
+                                  style: TextStyle(
+                                    fontFamily: 'ClashDisplay',
+                                    fontSize: 20,
+                                    color: Color.fromRGBO(100, 181, 246, 1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Text(
+                              '200 Kwh',
+                              style: TextStyle(
+                                fontFamily: 'ClashDisplay',
+                                fontSize: 25,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

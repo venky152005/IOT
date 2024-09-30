@@ -5,9 +5,12 @@ import 'package:iot_application/views/screens/home_screen.dart';
 import 'package:iot_application/views/widgets/carousel.dart';
 import 'package:iot_application/views/screens/device_screen.dart';
 import 'package:iot_application/views/widgets/glass.dart';
+import 'package:iot_application/views/widgets/timer.dart';
 
 class FindDevice extends StatefulWidget {
-  const FindDevice({super.key});
+  const FindDevice({super.key, required this.id});
+
+  final String id;
 
   @override
   State<FindDevice> createState() => _FindDeviceState();
@@ -20,7 +23,7 @@ class _FindDeviceState extends State<FindDevice> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      deviceController.deviceList();
+      deviceController.getDeviceView(widget.id);
     });
   }
 
@@ -45,21 +48,28 @@ class _FindDeviceState extends State<FindDevice> {
                 color: const Color(0xFF000000).withOpacity(0.9),
               ),
             ),
-            const Positioned(
+            Positioned(
               top: 30,
               left: 0,
               right: 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Ultrasonic Generator',
                     style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  SliderWidget(),
+                  SliderWidget(
+                    frequency:
+                        deviceController.deviceView.value.frequency ?? '0',
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const TimerWidget(),
                 ],
               ),
             ),

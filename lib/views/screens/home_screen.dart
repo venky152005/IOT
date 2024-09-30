@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iot_application/views/screens/device_screen.dart';
-import 'package:iot_application/views/widgets/carousel.dart';
+import 'package:iot_application/views/screens/finded_device.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 import 'package:iot_application/views/widgets/gridview.dart';
 
@@ -46,7 +46,7 @@ class HomeWidget extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      SliderWidget(),
+                      // SliderWidget(),
                       SizedBox(
                         height: 30,
                       ),
@@ -78,7 +78,14 @@ class HomeWidget extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const FindDevice(id: ''),
+                            ),
+                          );
+                        },
                         icon: Image.asset(
                           'icons/vaccum-cleaner.png',
                           color: const Color(0xFFB9B8B8),

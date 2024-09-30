@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 
 class SliderWidget extends StatelessWidget {
-  const SliderWidget({super.key});
+  const SliderWidget({super.key, required this.frequency});
+
+  final String frequency;
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +40,20 @@ class SliderWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         children: [
                           Text(
-                            '28',
-                            style: TextStyle(
+                            frequency,
+                            style: const TextStyle(
                               color: Color(0xFFD9FE74),
                               fontSize: 50,
                               fontWeight: FontWeight.w100,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text(
+                          const Text(
                             'khz',
                             style: TextStyle(
                                 color: Color(0xFFFFFFFF),

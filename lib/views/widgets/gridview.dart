@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/device_controller.dart';
+import 'package:iot_application/views/screens/finded_device.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 
 class GridViewWidget extends StatefulWidget {
@@ -44,9 +45,22 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     borderRadius: BorderRadius.circular(5),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
-                      child: PositionWidget(
-                        link: images[index],
-                        name: deviceController.devicesList[index].name ?? '',
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FindDevice(
+                                id: deviceController.devicesList[index].id ??
+                                    '',
+                              ),
+                            ),
+                          );
+                        },
+                        child: PositionWidget(
+                          link: images[index],
+                          name: deviceController.devicesList[index].name ?? '',
+                        ),
                       ),
                     ),
                   ),

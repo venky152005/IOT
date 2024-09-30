@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/auth_controller.dart';
 import 'package:iot_application/controllers/device_controller.dart';
+import 'package:iot_application/views/screens/device_screen.dart';
 import 'package:iot_application/views/screens/home_screen.dart';
 import 'package:iot_application/views/screens/otp_screen.dart';
 import 'package:iot_application/views/screens/signup_screen.dart';
@@ -198,7 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const HomeWidget(),
+                                                    const DeviceWidget(),
                                               ),
                                             );
                                           } else {

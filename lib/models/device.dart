@@ -1,5 +1,6 @@
 class DeviceModel {
   DeviceModel({
+    this.id,
     this.name,
     this.frequency,
     this.temperature,
@@ -9,6 +10,7 @@ class DeviceModel {
     this.updatedAt,
   });
 
+  String? id;
   String? name;
   String? frequency;
   String? temperature;
@@ -18,6 +20,7 @@ class DeviceModel {
   DateTime? updatedAt;
 
   factory DeviceModel.fromJson(Map<String, dynamic> json) => DeviceModel(
+        id: json["_id"],
         name: json["name"],
         frequency: json["frequency"],
         temperature: json["temperature"],

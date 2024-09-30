@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/constants/app_string.dart';
-import 'package:iot_application/views/widgets/timer.dart';
+import 'package:iot_application/views/screens/device_screen.dart';
+import 'package:iot_application/views/screens/finded_device.dart';
+import 'package:iot_application/views/screens/home_screen.dart';
+import 'package:iot_application/views/screens/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -41,8 +44,8 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TimerWidget(),
-      // home: token == null ? const MyHomePage() : const HomeWidget(),
+      // home: const HomeWidget(),
+      home: token == null ? const MyHomePage() : const HomeWidget(),
     );
   }
 }

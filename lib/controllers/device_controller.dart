@@ -8,7 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class DeviceController extends GetxController {
-  List<DeviceModel> devicesList = <DeviceModel>[].obs;
+  RxList<DeviceModel> devicesList = <DeviceModel>[].obs;
+
+  Rx<DeviceModel> deviceView = DeviceModel().obs;
 
   deviceList() async {
     devicesList.clear();
@@ -27,5 +29,24 @@ class DeviceController extends GetxController {
     for (Map<String, dynamic> device in data['data']) {
       devicesList.add(DeviceModel.fromJson(device));
     }
+  }
+
+  getDeviceView(String id) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? token = preferences.getString(ApiString.token);
+    Map<String, String> header = {
+      'authorization': token!,
+    };
+
+    Map<String, String> body = {
+      'id': id,
+    };
+
+    http.Response response =
+        await http.post(Uri.parse(ApiEndPoint.deviceList), headers: header, body: body);
+
+    var data = jsonDecode(response.body);
+
+    deviceView.value = DeviceModel.fromJson(data[data]);
   }
 }

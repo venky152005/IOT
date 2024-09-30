@@ -8,4 +8,6 @@ class ApiEndPoint {
   static String otpVerification = "$baseUrl/verify-login";
 
   static String deviceList = "$baseUrl/devices/list";
+
+  static String deviceView = "$baseUrl/devices/view";
 }

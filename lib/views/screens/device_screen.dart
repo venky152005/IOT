@@ -27,7 +27,7 @@ class DeviceWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 40,
+              top: MediaQuery.of(context).size.height * 0.04,
               left: 0,
               right: 0,
               child: Column(
@@ -40,24 +40,24 @@ class DeviceWidget extends StatelessWidget {
                         fontSize: 30,
                         fontFamily: 'ClashDisplay'),
                   ),
-                  const SizedBox(
-                    height: 60,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.025,
                   ),
                   SizedBox(
-                    height: 290,
+                    height: MediaQuery.of(context).size.height * 0.40,
                     width: MediaQuery.of(context).size.width * 0.98,
                     child: BarChartWidget(),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.025,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GlassMorphismWidget(
-                        height: 74,
-                        width: 190,
-                        box: Column(
+                        height: MediaQuery.of(context).size.height * 0.0844,
+                        width: MediaQuery.of(context).size.width * 0.46,
+                        box: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -82,9 +82,9 @@ class DeviceWidget extends StatelessWidget {
                         ),
                       ),
                       GlassMorphismWidget(
-                        height: 74,
-                        width: 190,
-                        box: Column(
+                        height: MediaQuery.of(context).size.height * 0.0844,
+                        width: MediaQuery.of(context).size.width * 0.46,
+                        box: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -112,11 +112,11 @@ class DeviceWidget extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.04,
                   ),
                   GlassMorphismWidget(
-                    height: 200,
+                    height: MediaQuery.of(context).size.height * 0.22,
                     width: MediaQuery.of(context).size.width * 0.92,
                     box: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

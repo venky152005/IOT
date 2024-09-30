@@ -12,8 +12,11 @@ class TimerWidget extends StatefulWidget {
 class _TimerWidgetState extends State<TimerWidget> {
   Timer? _timer;
   int _start = 10;
+  bool _isRunning = false;
 
   void startTimer() {
+    if (_isRunning) return;
+    _isRunning = true;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_start > 0) {
         setState(() {
@@ -21,8 +24,16 @@ class _TimerWidgetState extends State<TimerWidget> {
         });
       } else {
         _timer?.cancel();
+        _isRunning = false;
       }
     });
+  }
+
+  void pauseTime() {
+    if (_timer != null) {
+      _timer?.cancel();
+      _isRunning = false;
+    }
   }
 
   void increaseTime() {
@@ -66,48 +77,139 @@ class _TimerWidgetState extends State<TimerWidget> {
     String formattedTime =
         "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
 
-    return Scaffold(
-      body: Center(
+    return SingleChildScrollView(
+      child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: const Color(0xFFD9FE74),
+                    ),
+                  ),
+                  child: TextButton(
+                    onPressed: increaseTime,
+                    child: const Text(
+                      'Increase',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: const Color(0xFFD9FE74),
+                    ),
+                  ),
+                  child: TextButton(
+                    onPressed: decreaseTime,
+                    child: const Text(
+                      'Decrease',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             Text(
               formattedTime,
-              style: const TextStyle(fontSize: 48),
+              style: const TextStyle(
+                  fontSize: 60,
+                  color: Color(0xFFD9FE74),
+                  fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: increaseTime,
-                  child: const Text('Increase'),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: decreaseTime,
-                  child: const Text('Decrease'),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: startTimer,
-                  child: const Text('Start'),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                ElevatedButton(
-                  onPressed: stopTime,
-                  child: const Text('Stop'),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: const Color(0xFFD9FE74),
+                    ),
+                  ),
+                  child: TextButton(
+                    onPressed: startTimer,
+                    child: const Text(
+                      'Start',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                      ),
+                    ),
+                  ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: const Color(0xFFD9FE74),
+                    ),
+                  ),
+                  child: TextButton(
+                    onPressed: pauseTime,
+                    child: const Text(
+                      'Pause',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      color: const Color(0xFFD9FE74),
+                    ),
+                  ),
+                  child: TextButton(
+                    onPressed: stopTime,
+                    child: const Text(
+                      'Stop',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iot_application/views/screens/about_screen.dart';
+import 'package:iot_application/views/screens/finded_device.dart';
+import 'package:iot_application/views/screens/home_screen.dart';
 import 'package:iot_application/views/widgets/BarChart/bar_chart.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 
@@ -224,21 +227,42 @@ class DeviceWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeWidget(),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/home_icon.png',
                         color: const Color(0xFFB9B8B8),
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FindDevice(id: ''),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/vaccum-cleaner.png',
                         color: const Color(0xFFB9B8B8),
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DeviceWidget(),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/home_icon.png',
                         color: const Color(0xFFB9B8B8),
@@ -252,7 +276,14 @@ class DeviceWidget extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AboutScreen(),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/profile_person.png',
                         color: const Color(0xFFB9B8B8),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/constants/api_string.dart';
 import 'package:iot_application/constants/app_string.dart';
@@ -42,11 +43,16 @@ class DeviceController extends GetxController {
       'id': id,
     };
 
-    http.Response response =
-        await http.post(Uri.parse(ApiEndPoint.deviceList), headers: header, body: body);
+    http.Response response = await http.post(Uri.parse(ApiEndPoint.deviceList),
+        headers: header, body: body);
 
     var data = jsonDecode(response.body);
-
-    deviceView.value = DeviceModel.fromJson(data[data]);
+    debugPrint(response.body);
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        deviceView.value = DeviceModel.fromJson(data[data]);
+      }
+    }
+    Get.snackbar("Error", data['message'] ?? 'Server Error');
   }
 }

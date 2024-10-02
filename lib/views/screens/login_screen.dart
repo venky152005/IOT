@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/auth_controller.dart';
@@ -199,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const DeviceWidget(),
+                                                    const HomeWidget(),
                                               ),
                                             );
                                           } else {

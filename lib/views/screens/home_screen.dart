@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:iot_application/views/screens/about_screen.dart';
 import 'package:iot_application/views/screens/device_screen.dart';
 import 'package:iot_application/views/screens/finded_device.dart';
 import 'package:iot_application/views/widgets/glass.dart';
@@ -35,22 +37,117 @@ class HomeWidget extends StatelessWidget {
                 right: 0,
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height,
-                  child: const Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Ultrasonic Generator',
                         style:
                             TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        height: 250,
+                        width: 400,
+                        child: GlassMorphismWidget(
+                          height: 250,
+                          width: 400,
+                          box: Container(
+                            margin: const EdgeInsets.all(10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  DateFormat.yMEd().format(DateTime.now()),
+                                  style: const TextStyle(
+                                      color: Colors.white, fontSize: 15),
+                                ),
+                                const Text(
+                                  'About Device',
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Row(
+                                      children: [
+                                        Text(
+                                          '100%',
+                                          style: TextStyle(
+                                            color: Color(0xFFD9FE74),
+                                            fontSize: 60,
+                                            fontWeight: FontWeight.w100,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          '',
+                                          style: TextStyle(
+                                              color: Color(0xFFFFFFFF),
+                                              fontSize: 60,
+                                              fontFamily: 'ClashDisplay',
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Image.asset(
+                                      'icons/heartbeat.png',
+                                      color: const Color(0xFFD9FE74),
+                                      height: 80,
+                                      width: 80,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      '15%',
+                                      style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Image.asset(
+                                      'icons/graph_loss.png',
+                                      color: const Color(0xFFD9FE74),
+                                      height: 30,
+                                      width: 30,
+                                    )
+                                  ],
+                                ),
+                                const Text(
+                                  'Efficient',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                       // SliderWidget(),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
-                      Flexible(
+                      const Flexible(
                         child: Padding(
                           padding: EdgeInsets.all(5),
                           child: GridViewWidget(),
@@ -71,7 +168,14 @@ class HomeWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomeWidget(),
+                            ),
+                          );
+                        },
                         icon: Image.asset(
                           'icons/home_icon.png',
                           color: const Color(0xFFB9B8B8),
@@ -113,7 +217,14 @@ class HomeWidget extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AboutScreen(),
+                            ),
+                          );
+                        },
                         icon: Image.asset(
                           'icons/profile_person.png',
                           color: const Color(0xFFB9B8B8),

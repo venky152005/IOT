@@ -4,9 +4,16 @@ import 'package:intl/intl.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 
 class SliderWidget extends StatelessWidget {
-  const SliderWidget({super.key, required this.frequency});
+  const SliderWidget({
+    super.key,
+    required this.frequency,
+    required this.ampere,
+    required this.temperature,
+  });
 
   final String frequency;
+  final String ampere;
+  final String temperature;
 
   @override
   Widget build(BuildContext context) {
@@ -131,20 +138,20 @@ class SliderWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         children: [
                           Text(
-                            '10',
-                            style: TextStyle(
+                            ampere,
+                            style: const TextStyle(
                               color: Color(0xFFD9FE74),
                               fontSize: 50,
                               fontWeight: FontWeight.w100,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text(
+                          const Text(
                             'kwh',
                             style: TextStyle(
                                 color: Color(0xFFFFFFFF),
@@ -222,20 +229,20 @@ class SliderWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         children: [
                           Text(
-                            '60',
-                            style: TextStyle(
+                            temperature,
+                            style: const TextStyle(
                               color: Color(0xFFD9FE74),
                               fontSize: 50,
                               fontWeight: FontWeight.w100,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text(
+                          const Text(
                             '°C',
                             style: TextStyle(
                                 color: Color(0xFFFFFFFF),

@@ -13,6 +13,7 @@ class SignUpWidget extends StatefulWidget {
 
 class _SignUpWidgetState extends State<SignUpWidget> {
   final authController = Get.put(AuthController());
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -156,6 +157,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       child: TextFormField(
                         style: const TextStyle(color: Colors.white),
                         controller: authController.passwordController,
+                        obscureText: _obscureText,
                         validator: (password) {
                           if (password!.isEmpty) {
                             return 'Please Enter Your Password';
@@ -204,6 +206,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: TextFormField(
                         style: const TextStyle(color: Colors.white),
+                        obscureText: _obscureText,
                         validator: (password) {
                           if (password!.length < 8 || password.length > 15) {
                             return 'Not a valid password';

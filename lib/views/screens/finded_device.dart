@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/device_controller.dart';
+import 'package:iot_application/views/screens/about_screen.dart';
+import 'package:iot_application/views/screens/device_screen.dart';
 import 'package:iot_application/views/screens/home_screen.dart';
 import 'package:iot_application/views/widgets/carousel.dart';
-import 'package:iot_application/views/screens/device_screen.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 import 'package:iot_application/views/widgets/timer.dart';
 
@@ -65,9 +66,12 @@ class _FindDeviceState extends State<FindDevice> {
                   SliderWidget(
                     frequency:
                         deviceController.deviceView.value.frequency ?? '0',
+                    ampere: deviceController.deviceView.value.ampere ?? '0',
+                    temperature:
+                        deviceController.deviceView.value.temperature ?? '0',
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
                   const TimerWidget(),
                 ],
@@ -98,16 +102,16 @@ class _FindDeviceState extends State<FindDevice> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const FindDevice(id: ''),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/vaccum-cleaner.png',
-                        color: const Color(0xFFB9B8B8),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(
-                        'icons/home_icon.png',
                         color: const Color(0xFFB9B8B8),
                       ),
                     ),
@@ -121,12 +125,26 @@ class _FindDeviceState extends State<FindDevice> {
                         );
                       },
                       icon: Image.asset(
-                        'icons/wifi-router.png',
+                        'icons/home_icon.png',
                         color: const Color(0xFFB9B8B8),
                       ),
                     ),
                     IconButton(
                       onPressed: () {},
+                      icon: Image.asset(
+                        'icons/wifi-router.png',
+                        color: const Color(0xFFB9B8B8),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AboutScreen(),
+                          ),
+                        );
+                      },
                       icon: Image.asset(
                         'icons/profile_person.png',
                         color: const Color(0xFFB9B8B8),

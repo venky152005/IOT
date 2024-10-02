@@ -13,6 +13,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   Timer? _timer;
   int _start = 10;
   bool _isRunning = false;
+  int _totalTime = 10;
 
   void startTimer() {
     if (_isRunning) return;
@@ -39,6 +40,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   void increaseTime() {
     setState(() {
       _start += 60;
+      _totalTime += 60;
     });
   }
 
@@ -46,6 +48,7 @@ class _TimerWidgetState extends State<TimerWidget> {
     if (_start > 0) {
       setState(() {
         _start -= 60;
+        _totalTime -= 60;
       });
     }
   }
@@ -76,17 +79,20 @@ class _TimerWidgetState extends State<TimerWidget> {
 
     String formattedTime =
         "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
+    double progress = (_start / _totalTime).clamp(0.0, 1.0);
 
     return SingleChildScrollView(
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
+                  height: 50,
+                  width: 115,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
@@ -96,7 +102,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                   child: TextButton(
                     onPressed: increaseTime,
                     child: const Text(
-                      'Increase',
+                      'Up',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -108,6 +114,8 @@ class _TimerWidgetState extends State<TimerWidget> {
                   width: 20,
                 ),
                 Container(
+                  height: 50,
+                  width: 115,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
@@ -117,7 +125,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                   child: TextButton(
                     onPressed: decreaseTime,
                     child: const Text(
-                      'Decrease',
+                      'Down',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -133,82 +141,46 @@ class _TimerWidgetState extends State<TimerWidget> {
             Text(
               formattedTime,
               style: const TextStyle(
-                  fontSize: 60,
+                  fontSize: 80,
                   color: Color(0xFFD9FE74),
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'ClashDisplay'),
             ),
             const SizedBox(
-              height: 20,
+              height: 30,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: const Color(0xFFD9FE74),
-                    ),
-                  ),
-                  child: TextButton(
-                    onPressed: startTimer,
-                    child: const Text(
-                      'Start',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40,
+            SizedBox(
+              height: 100,
+              width: 100,
+              child: Stack(
+                children: [
+                  Center(
+                    child: SizedBox(
+                      height: 80,
+                      width: 80,
+                      child: CircularProgressIndicator(
+                        value: progress,
+                        strokeWidth: 5,
+                        backgroundColor: const Color(0xFFB9B8B8),
+                        valueColor: const AlwaysStoppedAnimation(
+                          Color(0xFFD9FE74),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: const Color(0xFFD9FE74),
-                    ),
-                  ),
-                  child: TextButton(
-                    onPressed: pauseTime,
-                    child: const Text(
-                      'Pause',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+                  Center(
+                    child: IconButton(
+                      onPressed: startTimer,
+                      icon: Icon(
+                        _isRunning
+                            ? Icons.play_circle_fill_rounded
+                            : Icons.stop_circle_rounded,
+                        size: 100,
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: const Color(0xFFD9FE74),
-                    ),
-                  ),
-                  child: TextButton(
-                    onPressed: stopTime,
-                    child: const Text(
-                      'Stop',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

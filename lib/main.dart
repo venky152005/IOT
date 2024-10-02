@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/constants/app_string.dart';
-import 'package:iot_application/views/screens/about_screen.dart';
 import 'package:iot_application/views/screens/home_screen.dart';
 import 'package:iot_application/views/screens/login_screen.dart';
 import 'package:iot_application/views/screens/profile_screen.dart';

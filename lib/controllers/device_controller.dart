@@ -20,6 +20,7 @@ class DeviceController extends GetxController {
     String? token = preferences.getString(ApiString.token);
     Map<String, String> header = {
       'authorization': token!,
+      'Content-type': 'application/json'
     };
 
     http.Response response =
@@ -37,6 +38,7 @@ class DeviceController extends GetxController {
     String? token = preferences.getString(ApiString.token);
     Map<String, String> header = {
       'authorization': token!,
+      'Content-type': 'application/json'
     };
 
     Map<String, String> body = {

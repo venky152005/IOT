@@ -24,256 +24,262 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF282725),
-      body: SingleChildScrollView(
-        child: Form(
-          key: formkey,
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.95,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 100, left: 20),
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                            fontFamily: 'ClashDisplay',
-                            fontSize: 30,
-                            color: Colors.white),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: const Color(0xFF282725),
+        body: SingleChildScrollView(
+          child: Form(
+            key: formkey,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.95,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 100, left: 20),
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                              fontFamily: 'ClashDisplay',
+                              fontSize: 30,
+                              color: Colors.white),
+                        ),
                       ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Text(
-                        'Welcome back! \nPlease enter your details.',
-                        style: TextStyle(color: Color(0xFFFFFFFF)),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Text(
+                          'Welcome back! \nPlease enter your details.',
+                          style: TextStyle(color: Color(0xFFFFFFFF)),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        'Email',
-                        style: TextStyle(color: Colors.white),
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: TextFormField(
-                        controller: authController.emailController,
-                        style: const TextStyle(color: Colors.white),
-                        validator: (email) {
-                          if (email!.isEmpty) {
-                            return 'Please Enter Your Email';
-                          } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
-                              .hasMatch(email)) {
-                            return 'Not a valid email';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: Color(0xFFB9B8B8)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: Color(0xFFB9B8B8)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          hintText: 'Enter Your Email ID',
-                          labelText: 'Email ID',
-                          prefixIcon: const Icon(
-                            Icons.email_outlined,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: Text(
+                          'Email',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: TextFormField(
+                          controller: authController.emailController,
+                          style: const TextStyle(color: Colors.white),
+                          validator: (email) {
+                            if (email!.isEmpty) {
+                              return 'Please Enter Your Email';
+                            } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
+                                .hasMatch(email)) {
+                              return 'Not a valid email';
+                            } else {
+                              return null;
+                            }
+                          },
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: Color(0xFFB9B8B8)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: Color(0xFFB9B8B8)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            hintText: 'Enter Your Email ID',
+                            labelText: 'Email ID',
+                            prefixIcon: const Icon(
+                              Icons.email_outlined,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        'Password',
-                        style: TextStyle(color: Colors.white),
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: TextFormField(
-                        controller: authController.passwordController,
-                        style: const TextStyle(color: Colors.white),
-                        obscureText: _obscureText,
-                        validator: (password) {
-                          if (password!.isEmpty) {
-                            return 'Please Enter Your Password';
-                          } else if (password.length < 8 ||
-                              password.length > 15) {
-                            return 'Not a valid password';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: Color(0xFFB9B8B8)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                const BorderSide(color: Color(0xFFB9B8B8)),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          hintText: 'Password',
-                          labelText: 'Enter Password',
-                          prefixIcon: const Icon(Icons.lock_outline),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _obscureText = !_obscureText;
-                              });
-                            },
-                            child: Icon(_obscureText
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        child: Text(
+                          'Password',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: TextFormField(
+                          controller: authController.passwordController,
+                          style: const TextStyle(color: Colors.white),
+                          obscureText: _obscureText,
+                          validator: (password) {
+                            if (password!.isEmpty) {
+                              return 'Please Enter Your Password';
+                            } else if (password.length < 8 ||
+                                password.length > 15) {
+                              return 'Not a valid password';
+                            } else {
+                              return null;
+                            }
+                          },
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: Color(0xFFB9B8B8)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  const BorderSide(color: Color(0xFFB9B8B8)),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            hintText: 'Password',
+                            labelText: 'Enter Password',
+                            prefixIcon: const Icon(Icons.lock_outline),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Obx(() {
-                      return authController.isLoading.value == true
-                          ? const CircularProgressIndicator(
-                              color: Colors.blueGrey,
-                              strokeWidth: 2.0,
-                            )
-                          : Center(
-                              child: Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: const Color(0xFFD9FE74)),
-                                height: 50,
-                                width: MediaQuery.of(context).size.width,
-                                child: TextButton(
-                                  onPressed: () async {
-                                    if (formkey.currentState!.validate()) {
-                                      formkey.currentState!.save();
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Obx(() {
+                        return authController.isLoading.value == true
+                            ? const CircularProgressIndicator(
+                                color: Colors.blueGrey,
+                                strokeWidth: 2.0,
+                              )
+                            : Center(
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xFFD9FE74)),
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: TextButton(
+                                    onPressed: () async {
+                                      if (formkey.currentState!.validate()) {
+                                        formkey.currentState!.save();
 
-                                      if ((authController.emailController.text
-                                                  .isEmpty ==
-                                              true) ||
-                                          (authController.passwordController
-                                                  .text.isEmpty ==
-                                              true)) {
-                                        authController.isLoading.value == false;
-                                      } else {
-                                        bool res = await authController.login();
-                                        debugPrint(res.toString());
-                                        if (res == true) {
-                                          debugPrint(authController
-                                              .isVerified.value
-                                              .toString());
-                                          if (authController.isVerified.value ==
-                                              true) {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const HomeWidget(),
-                                              ),
-                                            );
-                                          } else {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
+                                        if ((authController.emailController.text
+                                                    .isEmpty ==
+                                                true) ||
+                                            (authController.passwordController
+                                                    .text.isEmpty ==
+                                                true)) {
+                                          authController.isLoading.value ==
+                                              false;
+                                        } else {
+                                          bool res =
+                                              await authController.login();
+                                          debugPrint(res.toString());
+                                          if (res == true) {
+                                            debugPrint(authController
+                                                .isVerified.value
+                                                .toString());
+                                            if (authController
+                                                    .isVerified.value ==
+                                                true) {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const OtpWidget()),
-                                            );
+                                                      const HomeWidget(),
+                                                ),
+                                              );
+                                            } else {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const OtpWidget()),
+                                              );
+                                            }
                                           }
                                         }
+                                        // if (_email == 'venky15.12.2005@gmail.com' &&
+                                        //     _password == 'venky152005') {
+                                        //   Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //       builder: (context) => const FindDevice(),
+                                        //     ),
+                                        //   );
+                                        // } else {
+                                        //   ScaffoldMessenger.of(context).showSnackBar(
+                                        //     const SnackBar(
+                                        //       content:
+                                        //           Text('Invalid Username or Password'),
+                                        //     ),
+                                        //   );
+                                        // }
                                       }
-                                      // if (_email == 'venky15.12.2005@gmail.com' &&
-                                      //     _password == 'venky152005') {
-                                      //   Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //       builder: (context) => const FindDevice(),
-                                      //     ),
-                                      //   );
-                                      // } else {
-                                      //   ScaffoldMessenger.of(context).showSnackBar(
-                                      //     const SnackBar(
-                                      //       content:
-                                      //           Text('Invalid Username or Password'),
-                                      //     ),
-                                      //   );
-                                      // }
-                                    }
-                                  },
-                                  child: const Text(
-                                    'Log In',
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 18),
+                                    },
+                                    child: const Text(
+                                      'Log In',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                    }),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: const Color(0xFFD9FE74),
+                              );
+                      }),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: const Color(0xFFD9FE74),
+                            ),
                           ),
-                        ),
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpWidget(),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            'Sign Up',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignUpWidget(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Sign Up',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

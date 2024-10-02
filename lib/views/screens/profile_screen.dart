@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iot_application/views/screens/home_screen.dart';
+import 'package:iot_application/views/screens/settings_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -11,9 +17,19 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF282725),
         appBar: AppBar(
           backgroundColor: const Color(0xFF282725),
-          leading: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.white,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsScreen(),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.white,
+            ),
           ),
           centerTitle: true,
           title: const Text(
@@ -42,10 +58,9 @@ class ProfileScreen extends StatelessWidget {
             Container(
               height: MediaQuery.of(context).size.height * 3 / 4,
               decoration: const BoxDecoration(
-                color: Color(0xFFB9B8B8),
+                color: Color(0xFF282A28),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+                  topRight: Radius.circular(50),
                 ),
               ),
               child: Padding(
@@ -65,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Text(
                                 'Name',
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Color(0xFFB9B8B8)),
                               ),
                             ),
                           ],
@@ -87,7 +102,7 @@ class ProfileScreen extends StatelessWidget {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.black,
+                                  color: Color(0xFFB9B8B8),
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -98,12 +113,12 @@ class ProfileScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               hintText: 'Enter your name',
-                              hintStyle: const TextStyle(color: Colors.black),
+                              hintStyle: const TextStyle(color: Colors.white),
                               labelText: 'Name',
-                              labelStyle: const TextStyle(color: Colors.black),
+                              labelStyle: const TextStyle(color: Colors.white),
                               prefixIcon: const Icon(
                                 Icons.person,
-                                color: Colors.black,
+                                color: Color(0xFFB9B8B8),
                               ),
                             ),
                           ),
@@ -118,7 +133,9 @@ class ProfileScreen extends StatelessWidget {
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               child: Text(
                                 'Email',
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(
+                                  color: Color(0xFFB9B8B8),
+                                ),
                               ),
                             ),
                           ],
@@ -129,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: TextFormField(
-                            style: const TextStyle(color: Colors.black),
+                            style: const TextStyle(color: Colors.white),
                             validator: (email) {
                               if (email!.isEmpty) {
                                 return 'Please Enter Your Email';
@@ -143,7 +160,7 @@ class ProfileScreen extends StatelessWidget {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Colors.black,
+                                  color: Color(0xFFB9B8B8),
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -154,18 +171,73 @@ class ProfileScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               hintText: 'Enter Your Email ID',
-                              hintStyle: const TextStyle(color: Colors.black),
+                              hintStyle: const TextStyle(color: Colors.white),
                               labelText: 'Email ID',
-                              labelStyle: const TextStyle(color: Colors.black),
+                              labelStyle: const TextStyle(color: Colors.white),
                               prefixIcon: const Icon(
                                 Icons.email_outlined,
-                                color: Colors.black,
+                                color: Color(0xFFB9B8B8),
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 20,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              child: Text(
+                                'Phone Number',
+                                style: TextStyle(
+                                  color: Color(0xFFB9B8B8),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: TextFormField(
+                            style: const TextStyle(color: Colors.white),
+                            validator: (number) {
+                              if (number!.isEmpty) {
+                                return 'Please Enter Your Phone Number';
+                              } else if (!RegExp(r'^\+?[0-9]{10,15}$')
+                                  .hasMatch(number)) {
+                                return 'Not a valid Phone Number';
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0xFFB9B8B8),
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Color(0xFFD9FE74),
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              hintText: 'Enter Your Phone Number',
+                              hintStyle: const TextStyle(color: Colors.white),
+                              labelText: 'Phone Number',
+                              labelStyle: const TextStyle(color: Colors.white),
+                              prefixIcon: const Icon(
+                                Icons.phone,
+                                color: Color(0xFFB9B8B8),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -215,7 +287,7 @@ class ProfileScreen extends StatelessWidget {
                               child: const Text(
                                 'Back',
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 18),
+                                    color: Color(0xFFB9B8B8), fontSize: 18),
                               ),
                             ),
                           ),

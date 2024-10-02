@@ -27,9 +27,13 @@ class DeviceController extends GetxController {
         await http.post(Uri.parse(ApiEndPoint.deviceList), headers: header);
 
     var data = jsonDecode(response.body);
-
-    for (Map<String, dynamic> device in data['data']) {
-      devicesList.add(DeviceModel.fromJson(device));
+    debugPrint(response.body);
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        for (Map<String, dynamic> device in data['data']) {
+          devicesList.add(DeviceModel.fromJson(device));
+        }
+      }
     }
   }
 

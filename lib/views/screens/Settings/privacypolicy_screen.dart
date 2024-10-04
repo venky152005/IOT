@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/views/screens/settings_screen.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
 class PrivacypolicyScreen extends StatelessWidget {
   const PrivacypolicyScreen({super.key});

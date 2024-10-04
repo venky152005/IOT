@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/device_controller.dart';
-import 'package:iot_application/views/screens/about_screen.dart';
-import 'package:iot_application/views/screens/device_screen.dart';
-import 'package:iot_application/views/screens/home_screen.dart';
+import 'package:iot_application/views/screens/Screen/device_screen.dart';
+import 'package:iot_application/views/screens/Screen/home_screen.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 import 'package:iot_application/views/widgets/carousel.dart';
 import 'package:iot_application/views/widgets/glass.dart';
-import 'package:iot_application/views/widgets/timer.dart';
 
 class FindDevice extends StatefulWidget {
   const FindDevice({super.key, required this.id});
@@ -64,17 +63,23 @@ class _FindDeviceState extends State<FindDevice> {
                     const SizedBox(
                       height: 30,
                     ),
-                    SliderWidget(
-                      frequency:
-                          deviceController.deviceView.value.frequency ?? '0',
-                      ampere: deviceController.deviceView.value.ampere ?? '0',
-                      temperature:
-                          deviceController.deviceView.value.temperature ?? '0',
+                    Obx(
+                      () {
+                        return SliderWidget(
+                          frequency:
+                              deviceController.deviceView.value.frequency ??
+                                  '0',
+                          ampere:
+                              deviceController.deviceView.value.ampere ?? '0',
+                          temperature:
+                              deviceController.deviceView.value.temperature ??
+                                  '0',
+                        );
+                      },
                     ),
                     const SizedBox(
                       height: 50,
                     ),
-                    const TimerWidget(),
                   ],
                 ),
               ),
@@ -142,7 +147,7 @@ class _FindDeviceState extends State<FindDevice> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AboutScreen(),
+                              builder: (context) => const SettingsScreen(),
                             ),
                           );
                         },

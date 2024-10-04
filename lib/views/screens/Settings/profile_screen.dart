@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/views/screens/home_screen.dart';
-import 'package:iot_application/views/screens/settings_screen.dart';
+import 'package:iot_application/views/screens/Screen/home_screen.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

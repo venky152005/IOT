@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/constants/app_string.dart';
-import 'package:iot_application/views/screens/about_screen.dart';
-import 'package:iot_application/views/screens/privacypolicy_screen.dart';
-import 'package:iot_application/views/screens/settings_screen.dart';
-import 'package:iot_application/views/screens/terms_screen.dart';
+import 'package:iot_application/views/screens/Auth/login_screen.dart';
+import 'package:iot_application/views/screens/Screen/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -44,8 +42,8 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SettingsScreen(),
-      // home: token == null ? const MyHomePage() : const HomeWidget(),
+      // home: const ForgotPasswordChange(),
+      home: token == null ? const MyHomePage() : const HomeWidget(),
     );
   }
 }

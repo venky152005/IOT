@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/views/screens/settings_screen.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});

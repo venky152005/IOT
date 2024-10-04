@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:iot_application/views/screens/about_screen.dart';
-import 'package:iot_application/views/screens/device_screen.dart';
-import 'package:iot_application/views/screens/finded_device.dart';
+import 'package:iot_application/views/screens/Settings/about_screen.dart';
+import 'package:iot_application/views/screens/Screen/device_screen.dart';
+import 'package:iot_application/views/screens/Screen/finded_device.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 import 'package:iot_application/views/widgets/gridview.dart';
 
@@ -123,13 +124,22 @@ class HomeWidget extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(5),
                                           gradient: const LinearGradient(
-                                              colors: [
-                                                Color(0xFFB9B8B8),
-                                                Color(0xFF282725)
-                                              ]),
+                                            colors: [
+                                              Color(0xFFB9B8B8),
+                                              Color(0xFF282725)
+                                            ],
+                                          ),
                                         ),
                                         child: TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const AboutScreen(),
+                                              ),
+                                            );
+                                          },
                                           child: const Text(
                                             'AboutScreen',
                                             style: TextStyle(
@@ -228,7 +238,7 @@ class HomeWidget extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const AboutScreen(),
+                                builder: (context) => const SettingsScreen(),
                               ),
                             );
                           },

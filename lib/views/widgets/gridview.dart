@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/device_controller.dart';
-import 'package:iot_application/views/screens/finded_device.dart';
+import 'package:iot_application/views/screens/Screen/finded_device.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 
 class GridViewWidget extends StatefulWidget {
@@ -16,7 +16,6 @@ class _GridViewWidgetState extends State<GridViewWidget> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       deviceController.deviceList();
     });
@@ -34,7 +33,9 @@ class _GridViewWidgetState extends State<GridViewWidget> {
     return Obx(
       () {
         return deviceController.devicesList.isEmpty
-            ? const Center(child: Text('No Data'))
+            ? const Center(
+                child: Text('No Data'),
+              )
             : Center(
                 child: GridView.builder(
                   padding: const EdgeInsets.all(10),

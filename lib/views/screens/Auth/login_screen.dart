@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/auth_controller.dart';
 import 'package:iot_application/controllers/device_controller.dart';
-import 'package:iot_application/views/screens/device_screen.dart';
-import 'package:iot_application/views/screens/home_screen.dart';
-import 'package:iot_application/views/screens/otp_screen.dart';
-import 'package:iot_application/views/screens/signup_screen.dart';
+import 'package:iot_application/views/screens/Auth/forgotpassword_screen.dart';
+import 'package:iot_application/views/screens/Screen/device_screen.dart';
+import 'package:iot_application/views/screens/Screen/home_screen.dart';
+import 'package:iot_application/views/screens/Auth/otp_screen.dart';
+import 'package:iot_application/views/screens/Auth/signup_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -157,6 +158,38 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotpasswordScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Forgot Password ??',
+                                style: TextStyle(
+                                  color: Color(0xFFD9FE74),
+                                  fontSize: 18,
+                                  fontFamily: 'ClashDisplay',
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Color(0xFFD9FE74),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

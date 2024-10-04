@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/views/screens/about_screen.dart';
-import 'package:iot_application/views/screens/change_password_screen.dart';
-import 'package:iot_application/views/screens/privacypolicy_screen.dart';
-import 'package:iot_application/views/screens/profile_screen.dart';
-import 'package:iot_application/views/screens/terms_screen.dart';
+import 'package:iot_application/views/screens/Settings/about_screen.dart';
+import 'package:iot_application/views/screens/Settings/change_password_screen.dart';
+import 'package:iot_application/views/screens/Settings/privacypolicy_screen.dart';
+import 'package:iot_application/views/screens/Settings/profile_screen.dart';
+import 'package:iot_application/views/screens/Settings/terms_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

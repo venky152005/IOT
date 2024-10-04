@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:iot_application/controllers/auth_controller.dart';
-import 'package:iot_application/main.dart';
-import 'package:iot_application/views/screens/otp_screen.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
-class SignUpWidget extends StatefulWidget {
-  const SignUpWidget({super.key});
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<SignUpWidget> createState() => _SignUpWidgetState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _SignUpWidgetState extends State<SignUpWidget> {
-  final authController = Get.put(AuthController());
-  bool _obscureText = true;
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  final bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,27 +29,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       const Padding(
                         padding: EdgeInsets.only(top: 100, left: 20),
                         child: Text(
-                          'Sign Up',
+                          'Change Password',
                           style: TextStyle(
                               fontSize: 30,
                               fontFamily: 'ClashDisplay',
                               color: Colors.white),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          'Welcome back! \nPlease enter your details.',
-                          style: TextStyle(color: Color(0xFFFFFFFF)),
-                        ),
-                      ),
                       const SizedBox(
                         height: 20,
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Text(
-                          'Email',
+                          'Current Password',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -64,13 +53,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
                           style: const TextStyle(color: Colors.white),
-                          controller: authController.emailController,
-                          validator: (email) {
-                            if (email!.isEmpty) {
-                              return 'Please Enter Your Email';
-                            } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
-                                .hasMatch(email)) {
-                              return 'Not a valid email';
+                          validator: (password) {
+                            if (password!.isEmpty) {
+                              return 'Please Enter Your current password';
                             } else {
                               return null;
                             }
@@ -88,54 +73,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            hintText: 'Enter Your Email ID',
-                            labelText: 'Email ID',
-                            prefixIcon: const Icon(
-                              Icons.email_outlined,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Text(
-                          'Name',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
-                          controller: authController.nameController,
-                          validator: (name) {
-                            if (name!.isEmpty) {
-                              return 'Please Enter Your Name';
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xFFB9B8B8),
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xFFB9B8B8),
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            hintText: 'Enter your name',
-                            labelText: 'Name',
+                            hintText: 'Enter your Current Password',
+                            labelText: 'Current password',
                             prefixIcon: const Icon(Icons.person),
                           ),
                         ),
@@ -146,7 +85,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Text(
-                          'Password',
+                          'New Password',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -157,11 +96,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
                           style: const TextStyle(color: Colors.white),
-                          controller: authController.passwordController,
                           obscureText: _obscureText,
                           validator: (password) {
                             if (password!.isEmpty) {
-                              return 'Please Enter Your Password';
+                              return 'Please Enter Your New Password';
                             } else if (password.length < 8 ||
                                 password.length > 15) {
                               return 'Not a valid password';
@@ -182,7 +120,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            hintText: 'Password',
+                            hintText: 'New Password',
                             labelText: 'Enter Password',
                             prefixIcon: const Icon(
                               Icons.lock_outline,
@@ -228,7 +166,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               ),
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            hintText: 'Password',
+                            hintText: ' Confirm Password',
                             labelText: 'Conform Password',
                             prefixIcon: const Icon(
                               Icons.lock_outline,
@@ -240,57 +178,24 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   ),
                   Column(
                     children: [
-                      Obx(() {
-                        return authController.isLoading.value == true
-                            ? const CircularProgressIndicator(
-                                color: Colors.blueGrey,
-                                strokeWidth: 2.0,
-                              )
-                            : Center(
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: const Color(0xFFD9FE74)),
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: TextButton(
-                                    onPressed: () async {
-                                      if ((authController.emailController.text
-                                                  .isEmpty ==
-                                              true) ||
-                                          (authController.nameController.text
-                                                  .isEmpty ==
-                                              true) ||
-                                          (authController.passwordController
-                                                  .text.isEmpty ==
-                                              true)) {
-                                        authController.isLoading.value == false;
-                                      } else {
-                                        bool res =
-                                            await authController.register();
-                                        debugPrint(res.toString());
-                                        if (res == true) {
-                                          Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const OtpWidget()),
-                                            (route) => false,
-                                          );
-                                        }
-                                      }
-                                    },
-                                    child: const Text(
-                                      'Sign Up',
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 18),
-                                    ),
-                                  ),
-                                ),
-                              );
-                      }),
+                      Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: const Color(0xFFD9FE74)),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              'Done',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                            ),
+                          ),
+                        ),
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
@@ -310,12 +215,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const MyApp(),
+                                  builder: (context) => const SettingsScreen(),
                                 ),
                               );
                             },
                             child: const Text(
-                              'Log In',
+                              'Back',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 18),
                             ),

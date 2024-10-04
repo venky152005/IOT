@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/views/screens/about_screen.dart';
-import 'package:iot_application/views/screens/finded_device.dart';
-import 'package:iot_application/views/screens/home_screen.dart';
+import 'package:iot_application/views/screens/Screen/finded_device.dart';
+import 'package:iot_application/views/screens/Screen/home_screen.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 import 'package:iot_application/views/widgets/BarChart/bar_chart.dart';
 import 'package:iot_application/views/widgets/glass.dart';
 
@@ -281,7 +281,7 @@ class DeviceWidget extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AboutScreen(),
+                              builder: (context) => const SettingsScreen(),
                             ),
                           );
                         },

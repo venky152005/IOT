@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 class AuthController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final nameController = TextEditingController();
   final otpController = TextEditingController();
 
@@ -145,6 +146,105 @@ class AuthController extends GetxController {
       Get.snackbar("Error", data['message']);
       isLoading.value = false;
 
+      return false;
+    }
+  }
+
+  Future<bool> forgotPassword() async {
+    Map<String, String> header = {
+      'Content-type': 'application/json; charset=utf-8'
+    };
+
+    Map body = {"email": emailController.text.toString()};
+    debugPrint(body.toString());
+
+    http.Response response = await http.post(
+        Uri.parse(ApiEndPoint.forgotPassword),
+        headers: header,
+        body: jsonEncode(body));
+
+    var data = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        isLoading.value = false;
+        return true;
+      } else {
+        Get.snackbar("Error", data['message']);
+        isLoading.value = false;
+        return false;
+      }
+    } else {
+      Get.snackbar("Error", "Failed to reset password. Please try again.");
+      isLoading.value = false;
+      return false;
+    }
+  }
+
+  forgotPasswordOtp() async {
+    Map<String, String> header = {
+      "Content-type": "application/json; charset=utf-8"
+    };
+
+    Map body = {
+      "email": emailController.text.toString(),
+      "otp": otpController.text.toString()
+    };
+    debugPrint(body.toString());
+
+    http.Response response = await http.post(
+      Uri.parse(ApiEndPoint.forgotPasswordOtp),
+      headers: header,
+      body: jsonEncode(body),
+    );
+
+    var data = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        isLoading.value = false;
+        return true;
+      }
+      Get.snackbar("Error", data['message']);
+      isLoading.value = false;
+    }
+  }
+
+  Future<bool> changePassword() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Map<String, String> header = {
+      'Content-type': 'application/json; charset=utf-8'
+    };
+
+    Map body = {
+      "email": emailController.text.toString(),
+      "otp": otpController.text.toString(),
+      "password": passwordController.text.toString()
+    };
+    debugPrint(body.toString());
+
+    http.Response response = await http.post(
+      Uri.parse(ApiEndPoint.changePassword),
+      headers: header,
+      body: jsonEncode(body),
+    );
+
+    var data = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        preferences.setString(ApiString.token, data['token']);
+        preferences.setString(ApiString.id, data['data']['user_id']);
+        preferences.setString(ApiString.email, data['data']['email'] ?? '');
+        preferences.setString(ApiString.mobileNo, data['data']['mobile'] ?? '');
+        Get.snackbar("Success", data['message']);
+        isLoading.value = false;
+        return true;
+      }
+      Get.snackbar("Error", data['message']);
+      isLoading.value = false;
+      return false;
+    } else {
       return false;
     }
   }

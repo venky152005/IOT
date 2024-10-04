@@ -10,4 +10,10 @@ class ApiEndPoint {
   static String deviceList = "$baseUrl/devices/list";
 
   static String deviceView = "$baseUrl/devices/view";
+
+  static String forgotPassword = "$baseUrl/forgot-password";
+
+  static String forgotPasswordOtp = "$baseUrl/email/forgot-code-verification";
+
+  static String changePassword = "$baseUrl/change-forgot-password";
 }

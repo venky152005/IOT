@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:iot_application/views/screens/home_screen.dart';
-import 'package:iot_application/views/screens/settings_screen.dart';
+import 'package:get/get.dart';
+import 'package:iot_application/controllers/auth_controller.dart';
+import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
-class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key});
+class ForgotPasswordChange extends StatefulWidget {
+  const ForgotPasswordChange({super.key});
 
   @override
-  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
+  State<ForgotPasswordChange> createState() => _ForgotPasswordChangeState();
 }
 
-class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
+  final authController = Get.put(AuthController());
   final bool _obscureText = true;
 
   @override
@@ -43,49 +45,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Text(
-                          'Current Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
-                          validator: (password) {
-                            if (password!.isEmpty) {
-                              return 'Please Enter Your current password';
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xFFB9B8B8),
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Color(0xFFB9B8B8),
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            hintText: 'Enter your Current Password',
-                            labelText: 'Current password',
-                            prefixIcon: const Icon(Icons.person),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Text(
                           'New Password',
                           style: TextStyle(color: Colors.white),
                         ),
@@ -96,6 +55,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
+                          controller: authController.passwordController,
                           style: const TextStyle(color: Colors.white),
                           obscureText: _obscureText,
                           validator: (password) {
@@ -145,6 +105,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
+                          controller: authController.confirmPasswordController,
                           style: const TextStyle(color: Colors.white),
                           obscureText: _obscureText,
                           validator: (password) {
@@ -188,7 +149,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           height: 50,
                           width: MediaQuery.of(context).size.width,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if ((authController
+                                          .passwordController.text.isEmpty ==
+                                      true) ||
+                                  (authController.confirmPasswordController.text
+                                          .isEmpty ==
+                                      true)) {
+                                if (authController.passwordController ==
+                                    authController.confirmPasswordController) {}
+                              }
+                            },
                             child: const Text(
                               'Done',
                               style:

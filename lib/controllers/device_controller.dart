@@ -49,16 +49,22 @@ class DeviceController extends GetxController {
       'id': id,
     };
 
-    http.Response response = await http.post(Uri.parse(ApiEndPoint.deviceList),
-        headers: header, body: body);
+    http.Response response = await http.post(
+      Uri.parse(ApiEndPoint.deviceView),
+      headers: header,
+      body: jsonEncode(body),
+    );
 
     var data = jsonDecode(response.body);
-    debugPrint(response.body);
+    debugPrint(data['data'].toString());
     if (response.statusCode == 200) {
       if (data['status'] == true) {
-        deviceView.value = DeviceModel.fromJson(data[data]);
+        if (data['data'] != null) {
+          deviceView.value = DeviceModel.fromJson(data['data']);
+        } else {
+          Get.snackbar("Error", data['message'] ?? 'Server Error');
+        }
       }
     }
-    Get.snackbar("Error", data['message'] ?? 'Server Error');
   }
 }

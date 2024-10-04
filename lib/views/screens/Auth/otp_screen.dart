@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iot_application/views/screens/signup_screen.dart';
+import 'package:iot_application/views/screens/Auth/signup_screen.dart';
 import 'package:pinput/pinput.dart';
 import 'package:iot_application/controllers/auth_controller.dart';
 
@@ -33,9 +33,9 @@ class _OtpWidgetState extends State<OtpWidget> {
                     fontSize: 30,
                     fontWeight: FontWeight.bold),
               ),
-              const Column(
+              Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       'Enter the code sent to the number',
@@ -43,10 +43,10 @@ class _OtpWidgetState extends State<OtpWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.only(bottom: 10),
                     child: Text(
-                      '+91 9514290710',
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                      authController.emailController.text,
+                      style: const TextStyle(color: Colors.white, fontSize: 15),
                     ),
                   ),
                 ],
@@ -108,7 +108,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                                 true)) {
                           authController.isLoading.value == false;
                         } else {
-                          var res = await authController.verifyOtp();
+                          bool res = await authController.verifyOtp();
                           debugPrint(res.toString());
                           if (res == true) {
                             Navigator.push(

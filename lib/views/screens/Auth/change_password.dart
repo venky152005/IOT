@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/auth_controller.dart';
+import 'package:iot_application/views/screens/Auth/login_screen.dart';
 import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
 class ForgotPasswordChange extends StatefulWidget {
@@ -12,7 +13,7 @@ class ForgotPasswordChange extends StatefulWidget {
 
 class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
   final authController = Get.put(AuthController());
-  final bool _obscureText = true;
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +87,16 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                             prefixIcon: const Icon(
                               Icons.lock_outline,
                             ),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                            ),
                           ),
                         ),
                       ),
@@ -133,6 +144,16 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                             prefixIcon: const Icon(
                               Icons.lock_outline,
                             ),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                            ),
                           ),
                         ),
                       ),
@@ -140,34 +161,64 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                   ),
                   Column(
                     children: [
-                      Center(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: const Color(0xFFD9FE74)),
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: TextButton(
-                            onPressed: () {
-                              if ((authController
-                                          .passwordController.text.isEmpty ==
-                                      true) ||
-                                  (authController.confirmPasswordController.text
-                                          .isEmpty ==
-                                      true)) {
-                                if (authController.passwordController ==
-                                    authController.confirmPasswordController) {}
-                              }
-                            },
-                            child: const Text(
-                              'Done',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
+                      Obx(() {
+                        return authController.isLoading.value == true
+                            ? const CircularProgressIndicator(
+                                color: Colors.blueGrey,
+                                strokeWidth: 2.0,
+                              )
+                            : Center(
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xFFD9FE74)),
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: TextButton(
+                                    onPressed: () async {
+                                      if ((authController.passwordController
+                                                  .text.isEmpty ==
+                                              true) ||
+                                          (authController
+                                                  .confirmPasswordController
+                                                  .text
+                                                  .isEmpty ==
+                                              true)) {
+                                        authController.isLoading.value == false;
+                                      } else {
+                                        if (authController
+                                                .passwordController.text ==
+                                            authController
+                                                .confirmPasswordController
+                                                .text) {
+                                          bool res = await authController
+                                              .changePassword();
+                                          debugPrint(res.toString());
+                                          if (res == true) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const MyHomePage(),
+                                              ),
+                                            );
+                                          }
+                                        } else {
+                                          Get.snackbar("Error", 'Invalid');
+                                        }
+                                      }
+                                    },
+                                    child: const Text(
+                                      'Done',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                              );
+                      }),
                       const SizedBox(
                         height: 10,
                       ),

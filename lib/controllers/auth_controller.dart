@@ -215,6 +215,8 @@ class AuthController extends GetxController {
     Map<String, String> header = {
       'Content-type': 'application/json; charset=utf-8'
     };
+    debugPrint("hi");
+    isLoading.value = true;
 
     Map body = {
       "email": emailController.text.toString(),
@@ -233,6 +235,7 @@ class AuthController extends GetxController {
 
     if (response.statusCode == 200) {
       if (data['status'] == true) {
+        debugPrint("hello");
         preferences.setString(ApiString.token, data['token']);
         preferences.setString(ApiString.id, data['data']['user_id']);
         preferences.setString(ApiString.email, data['data']['email'] ?? '');

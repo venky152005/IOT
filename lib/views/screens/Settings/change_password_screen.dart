@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iot_application/controllers/user_controller.dart';
 import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -9,7 +11,8 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-  final bool _obscureText = true;
+  final userController = Get.put(UserController());
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +55,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
+                          controller: userController.oldPasswordController,
                           style: const TextStyle(color: Colors.white),
                           validator: (password) {
                             if (password!.isEmpty) {
@@ -95,6 +99,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
+                          controller: userController.passwordController,
                           style: const TextStyle(color: Colors.white),
                           obscureText: _obscureText,
                           validator: (password) {
@@ -125,6 +130,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             prefixIcon: const Icon(
                               Icons.lock_outline,
                             ),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                            ),
                           ),
                         ),
                       ),
@@ -144,6 +159,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
+                          controller: userController.confirmPasswordController,
                           style: const TextStyle(color: Colors.white),
                           obscureText: _obscureText,
                           validator: (password) {
@@ -171,6 +187,16 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             prefixIcon: const Icon(
                               Icons.lock_outline,
                             ),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                            ),
                           ),
                         ),
                       ),
@@ -187,7 +213,42 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           height: 50,
                           width: MediaQuery.of(context).size.width,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              if ((userController
+                                          .passwordController.text.isEmpty ==
+                                      true) ||
+                                  (userController
+                                          .oldPasswordController.text.isEmpty ==
+                                      true) ||
+                                  (userController.confirmPasswordController.text
+                                          .isEmpty ==
+                                      true)) {
+                                userController.isLoading.value == false;
+                              } else {
+                                print(userController.passwordController.text);
+                                print(
+                                    userController.oldPasswordController.text);
+                                print(userController
+                                    .confirmPasswordController.text);
+                                if (userController.passwordController.text ==
+                                    userController
+                                        .confirmPasswordController.text) {
+                                  bool res = await userController
+                                      .changePasswordSettings();
+                                  debugPrint(res.toString());
+                                  if (res == true) {
+                                    Get.snackbar(
+                                      "Success",
+                                      'Completed',
+                                      backgroundColor: const Color(0xFFFFFFFF),
+                                      colorText: const Color(0xFF000000),
+                                    );
+                                  }
+                                } else {
+                                  Get.snackbar("Error", 'Invalid');
+                                }
+                              }
+                            },
                             child: const Text(
                               'Done',
                               style:

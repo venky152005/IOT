@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iot_application/controllers/user_controller.dart';
+import 'package:iot_application/views/screens/Auth/login_screen.dart';
 import 'package:iot_application/views/screens/Settings/about_screen.dart';
 import 'package:iot_application/views/screens/Settings/change_password_screen.dart';
 import 'package:iot_application/views/screens/Settings/privacypolicy_screen.dart';
 import 'package:iot_application/views/screens/Settings/profile_screen.dart';
 import 'package:iot_application/views/screens/Settings/terms_screen.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -177,13 +187,19 @@ class SettingsScreen extends StatelessWidget {
               ),
               const Divider(),
               ListTile(
-                onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const ProfileScreen(),
-                  //   ),
-                  // );
+                onTap: () async {
+                  var res = await userController.logout();
+                  debugPrint(res.toString());
+                  if (res == true) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyHomePage(),
+                      ),
+                    );
+                  } else {
+                    Get.snackbar('Error', 'Server Error');
+                  }
                 },
                 hoverColor: const Color(0xFFD9FE74),
                 leading: const Icon(

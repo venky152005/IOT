@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iot_application/controllers/user_controller.dart';
 import 'package:iot_application/views/screens/Screen/home_screen.dart';
 import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 
@@ -10,6 +12,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final userController = Get.put(UserController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -92,6 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: TextFormField(
                             style: const TextStyle(color: Colors.white),
+                            controller: userController.nameController,
                             validator: (name) {
                               if (name!.isEmpty) {
                                 return 'Please Enter Your Name';
@@ -146,6 +151,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: TextFormField(
+                            controller: userController.emailController,
                             style: const TextStyle(color: Colors.white),
                             validator: (email) {
                               if (email!.isEmpty) {
@@ -204,6 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15),
                           child: TextFormField(
+                            controller: userController.mobileController,
                             style: const TextStyle(color: Colors.white),
                             validator: (number) {
                               if (number!.isEmpty) {
@@ -252,7 +259,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 50,
                             width: MediaQuery.of(context).size.width,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                if ((userController
+                                            .nameController.text.isEmpty ==
+                                        true) ||
+                                    (userController
+                                            .emailController.text.isEmpty ==
+                                        true) ||
+                                    (userController
+                                            .nameController.text.isEmpty ==
+                                        true)) {
+                                  userController.isLoading.value == false;
+                                } else {
+                                  bool res =
+                                      await userController.updateProfile();
+                                  if (res == true) {
+                                    Get.snackbar("Success", 'Completed',
+                                        backgroundColor:
+                                            const Color(0xFFFFFFFF),
+                                        colorText: const Color(0xFF000000));
+                                  } else {
+                                    Get.snackbar("Error", 'Invalid');
+                                  }
+                                }
+                              },
                               child: const Text(
                                 'Done',
                                 style: TextStyle(

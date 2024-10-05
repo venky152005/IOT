@@ -16,4 +16,10 @@ class ApiEndPoint {
   static String forgotPasswordOtp = "$baseUrl/email/forgot-code-verification";
 
   static String changePassword = "$baseUrl/change-forgot-password";
+
+  static String updateProfile = "$baseUrl/profile/update";
+
+  static String changePasswordSettings = "$baseUrl/change-password";
+
+  static String logout = "$baseUrl/delete_account";
 }

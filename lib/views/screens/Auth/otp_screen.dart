@@ -111,12 +111,15 @@ class _OtpWidgetState extends State<OtpWidget> {
                           bool res = await authController.verifyOtp();
                           debugPrint(res.toString());
                           if (res == true) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpWidget(),
-                              ),
+                            Get.to(
+                              const SignUpWidget(),
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => const SignUpWidget(),
+                            //   ),
+                            // );
                           }
                         }
                       },

@@ -61,8 +61,8 @@ class _FindDeviceState extends State<FindDevice> {
                       'Ultrasonic Generator',
                       style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
                     ),
-                    const SizedBox(
-                      height: 30,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.03,
                     ),
                     Obx(
                       () {
@@ -78,8 +78,8 @@ class _FindDeviceState extends State<FindDevice> {
                         );
                       },
                     ),
-                    const SizedBox(
-                      height: 50,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
                     ),
                     const TimerWidget(),
                   ],
@@ -105,7 +105,7 @@ class _FindDeviceState extends State<FindDevice> {
                           );
                         },
                         icon: Image.asset(
-                          'icons/home_icon.png',
+                          'icons/Home.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),
@@ -119,7 +119,7 @@ class _FindDeviceState extends State<FindDevice> {
                           );
                         },
                         icon: Image.asset(
-                          'icons/vaccum-cleaner.png',
+                          'icons/Cleaner.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),
@@ -133,14 +133,7 @@ class _FindDeviceState extends State<FindDevice> {
                           );
                         },
                         icon: Image.asset(
-                          'icons/home_icon.png',
-                          color: const Color(0xFFB9B8B8),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset(
-                          'icons/wifi-router.png',
+                          'icons/BarChart.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),
@@ -154,7 +147,7 @@ class _FindDeviceState extends State<FindDevice> {
                           );
                         },
                         icon: Image.asset(
-                          'icons/profile_person.png',
+                          'icons/Profile.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),

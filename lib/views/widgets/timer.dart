@@ -14,7 +14,6 @@ class _TimerWidgetState extends State<TimerWidget> {
   Timer? _timer;
   int _start = 10;
   bool _isRunning = false;
-  int _totalTime = 10;
 
   void startTimer() {
     if (_isRunning) return;
@@ -41,7 +40,6 @@ class _TimerWidgetState extends State<TimerWidget> {
   void increaseTime() {
     setState(() {
       _start += 60;
-      _totalTime += 60;
     });
   }
 
@@ -49,7 +47,6 @@ class _TimerWidgetState extends State<TimerWidget> {
     if (_start > 0) {
       setState(() {
         _start -= 60;
-        _totalTime -= 60;
       });
     }
   }
@@ -60,6 +57,13 @@ class _TimerWidgetState extends State<TimerWidget> {
         _start = 0;
       });
     }
+  }
+
+  void toggleTimer() {
+    if (_isRunning) {
+      stopTime();
+    }
+    startTimer();
   }
 
   @override
@@ -85,7 +89,7 @@ class _TimerWidgetState extends State<TimerWidget> {
             Center(
               child: GlassMorphismWidget(
                 height: 200,
-                width: 400,
+                width: 380,
                 box: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
@@ -132,12 +136,39 @@ class _TimerWidgetState extends State<TimerWidget> {
                 ),
               ),
             ),
+            const Positioned(
+              top: 20,
+              left: 200,
+              child: GlassMorphismWidget(
+                height: 70,
+                width: 190,
+                box: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(4),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        'Target Time',
+                        style: TextStyle(
+                          color: Color(0xFFB9B8B8),
+                          fontFamily: 'ClashDisplay',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 28,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
             Positioned(
               bottom: 20,
               left: 200,
               child: GlassMorphismWidget(
                 height: 70,
-                width: 200,
+                width: 190,
                 box: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -151,11 +182,13 @@ class _TimerWidgetState extends State<TimerWidget> {
                       ),
                     ),
                     IconButton(
-                      onPressed: startTimer,
-                      icon: const Icon(
-                        Icons.play_arrow_rounded,
-                        size: 50,
-                        color: Color(0xFFB9B8B8),
+                      onPressed: toggleTimer,
+                      icon: Icon(
+                        _isRunning
+                            ? Icons.stop_circle_outlined
+                            : Icons.play_arrow_rounded,
+                        size: 45,
+                        color: const Color(0xFFB9B8B8),
                       ),
                     ),
                     IconButton(

@@ -111,13 +111,16 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordOtpScreen> {
                           bool res = await authController.forgotPasswordOtp();
                           debugPrint(res.toString());
                           if (res == true) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const ForgotPasswordChange(),
-                              ),
+                            Get.to(
+                              const ForgotPasswordChange(),
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         const ForgotPasswordChange(),
+                            //   ),
+                            // );
                           }
                         }
                       },

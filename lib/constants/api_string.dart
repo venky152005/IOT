@@ -21,5 +21,7 @@ class ApiEndPoint {
 
   static String changePasswordSettings = "$baseUrl/change-password";
 
+  static String profile = "$baseUrl/profile";
+
   static String logout = "$baseUrl/delete_account";
 }

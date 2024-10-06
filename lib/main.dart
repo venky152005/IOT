@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:iot_application/constants/app_string.dart';
 import 'package:iot_application/views/screens/Auth/login_screen.dart';
 import 'package:iot_application/views/screens/Screen/home_screen.dart';
-import 'package:iot_application/views/widgets/timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -34,7 +33,7 @@ class _MyAppState extends State<MyApp> {
 
     if (token == null) {
     } else {
-      Get.offAll(() => const HomeWidget());
+      Get.offAll(const HomeWidget());
     }
   }
 

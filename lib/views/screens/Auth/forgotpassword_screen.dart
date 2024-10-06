@@ -93,7 +93,7 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
                       Obx(() {
                         return authController.isLoading.value == true
                             ? const CircularProgressIndicator(
-                                color: Colors.blueGrey,
+                                color: Color(0xFFD9FE74),
                                 strokeWidth: 2.0,
                               )
                             : Center(
@@ -116,12 +116,15 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
                                             .forgotPassword();
                                         debugPrint(res.toString());
                                         if (res == true) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const ForgotpasswordOtpScreen(),
-                                              ));
+                                          Get.to(
+                                            const ForgotpasswordOtpScreen(),
+                                          );
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //       builder: (context) =>
+                                          //           const ForgotpasswordOtpScreen(),
+                                          //     ));
                                         }
                                       }
                                     },

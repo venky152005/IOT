@@ -237,7 +237,7 @@ class DeviceWidget extends StatelessWidget {
                           );
                         },
                         icon: Image.asset(
-                          'icons/home_icon.png',
+                          'icons/Home.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),
@@ -251,7 +251,7 @@ class DeviceWidget extends StatelessWidget {
                           );
                         },
                         icon: Image.asset(
-                          'icons/vaccum-cleaner.png',
+                          'icons/Cleaner.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),
@@ -265,14 +265,7 @@ class DeviceWidget extends StatelessWidget {
                           );
                         },
                         icon: Image.asset(
-                          'icons/home_icon.png',
-                          color: const Color(0xFFB9B8B8),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset(
-                          'icons/wifi-router.png',
+                          'icons/BarChart.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),
@@ -286,7 +279,7 @@ class DeviceWidget extends StatelessWidget {
                           );
                         },
                         icon: Image.asset(
-                          'icons/profile_person.png',
+                          'icons/Profile.png',
                           color: const Color(0xFFB9B8B8),
                         ),
                       ),

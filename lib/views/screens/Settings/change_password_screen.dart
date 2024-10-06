@@ -204,59 +204,68 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                   Column(
                     children: [
-                      Center(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: const Color(0xFFD9FE74)),
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: TextButton(
-                            onPressed: () async {
-                              if ((userController
-                                          .passwordController.text.isEmpty ==
-                                      true) ||
-                                  (userController
-                                          .oldPasswordController.text.isEmpty ==
-                                      true) ||
-                                  (userController.confirmPasswordController.text
-                                          .isEmpty ==
-                                      true)) {
-                                userController.isLoading.value == false;
-                              } else {
-                                print(userController.passwordController.text);
-                                print(
-                                    userController.oldPasswordController.text);
-                                print(userController
-                                    .confirmPasswordController.text);
-                                if (userController.passwordController.text ==
-                                    userController
-                                        .confirmPasswordController.text) {
-                                  bool res = await userController
-                                      .changePasswordSettings();
-                                  debugPrint(res.toString());
-                                  if (res == true) {
-                                    Get.snackbar(
-                                      "Success",
-                                      'Completed',
-                                      backgroundColor: const Color(0xFFFFFFFF),
-                                      colorText: const Color(0xFF000000),
-                                    );
-                                  }
-                                } else {
-                                  Get.snackbar("Error", 'Invalid');
-                                }
-                              }
-                            },
-                            child: const Text(
-                              'Done',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
+                      Obx(() {
+                        return userController.isLoading.value == true
+                            ? const CircularProgressIndicator(
+                                color: Color(0xFFD9FE74),
+                                strokeWidth: 2.0,
+                              )
+                            : Center(
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: const Color(0xFFD9FE74)),
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: TextButton(
+                                    onPressed: () async {
+                                      if ((userController.passwordController
+                                                  .text.isEmpty ==
+                                              true) ||
+                                          (userController.oldPasswordController
+                                                  .text.isEmpty ==
+                                              true) ||
+                                          (userController
+                                                  .confirmPasswordController
+                                                  .text
+                                                  .isEmpty ==
+                                              true)) {
+                                        userController.isLoading.value == false;
+                                      } else {
+                                        if (userController
+                                                .passwordController.text ==
+                                            userController
+                                                .confirmPasswordController
+                                                .text) {
+                                          bool res = await userController
+                                              .changePasswordSettings();
+                                          debugPrint(res.toString());
+                                          if (res == true) {
+                                            Get.snackbar(
+                                              "Success",
+                                              'Completed',
+                                              backgroundColor:
+                                                  const Color(0xFFFFFFFF),
+                                              colorText:
+                                                  const Color(0xFF000000),
+                                            );
+                                          }
+                                        } else {
+                                          Get.snackbar("Error", 'Invalid');
+                                        }
+                                      }
+                                    },
+                                    child: const Text(
+                                      'Done',
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                              );
+                      }),
                       const SizedBox(
                         height: 10,
                       ),

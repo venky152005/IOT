@@ -164,7 +164,7 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                       Obx(() {
                         return authController.isLoading.value == true
                             ? const CircularProgressIndicator(
-                                color: Colors.blueGrey,
+                                color: Color(0xFFD9FE74),
                                 strokeWidth: 2.0,
                               )
                             : Center(
@@ -197,13 +197,14 @@ class _ForgotPasswordChangeState extends State<ForgotPasswordChange> {
                                               .changePassword();
                                           debugPrint(res.toString());
                                           if (res == true) {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const MyHomePage(),
-                                              ),
-                                            );
+                                            Get.to(const MyHomePage());
+                                            // Navigator.push(
+                                            //   context,
+                                            // MaterialPageRoute(
+                                            //   builder: (context) =>
+                                            //       const MyHomePage(),
+                                            // ),
+                                            // );
                                           }
                                         } else {
                                           Get.snackbar("Error", 'Invalid');

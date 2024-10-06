@@ -198,7 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Obx(() {
                         return authController.isLoading.value == true
                             ? const CircularProgressIndicator(
-                                color: Colors.blueGrey,
+                                color: Color(0xFFD9FE74),
                                 strokeWidth: 2.0,
                               )
                             : Center(
@@ -234,20 +234,26 @@ class _MyHomePageState extends State<MyHomePage> {
                                             if (authController
                                                     .isVerified.value ==
                                                 true) {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const HomeWidget(),
-                                                ),
+                                              Get.to(
+                                                const HomeWidget(),
                                               );
+                                              // Navigator.push(
+                                              //   context,
+                                              //   MaterialPageRoute(
+                                              //     builder: (context) =>
+                                              //         const HomeWidget(),
+                                              //   ),
+                                              // );
                                             } else {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const OtpWidget()),
+                                              Get.to(
+                                                () => const OtpWidget(),
                                               );
+                                              // Navigator.push(
+                                              //   context,
+                                              //   MaterialPageRoute(
+                                              //       builder: (context) =>
+                                              //           const OtpWidget()),
+                                              // );
                                             }
                                           }
                                         }

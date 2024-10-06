@@ -13,7 +13,7 @@ class SignUpWidget extends StatefulWidget {
 
 class _SignUpWidgetState extends State<SignUpWidget> {
   final authController = Get.put(AuthController());
-  bool _obscureText = true;
+  final bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +243,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       Obx(() {
                         return authController.isLoading.value == true
                             ? const CircularProgressIndicator(
-                                color: Colors.blueGrey,
+                                color: Color(0xFFD9FE74),
                                 strokeWidth: 2.0,
                               )
                             : Center(
@@ -272,13 +272,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             await authController.register();
                                         debugPrint(res.toString());
                                         if (res == true) {
-                                          Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const OtpWidget()),
-                                            (route) => false,
+                                          Get.offAll(
+                                            const OtpWidget(),
                                           );
+                                          // Navigator.of(context)
+                                          //     .pushAndRemoveUntil(
+                                          //   MaterialPageRoute(
+                                          //       builder: (context) =>
+                                          //           const OtpWidget()),
+                                          //   (route) => false,
+                                          // );
                                         }
                                       }
                                     },

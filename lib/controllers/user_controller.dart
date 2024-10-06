@@ -70,7 +70,7 @@ class UserController extends GetxController {
 
     Map body = {
       "password": passwordController.text.toString(),
-      "old-password": oldPasswordController.text.toString(),
+      "old_password": oldPasswordController.text.toString(),
     };
     debugPrint(body.toString());
 
@@ -100,5 +100,29 @@ class UserController extends GetxController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     bool result = await preferences.clear();
     return result;
+  }
+
+  profile() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? token = preferences.getString(ApiString.token);
+    Map<String, String> header = {
+      'Authorization': token!,
+      'Content-type': 'application/json; charset=utf-8'
+    };
+    debugPrint('Hi');
+
+    http.Response response = await http.post(
+      Uri.parse(ApiEndPoint.profile),
+      headers: header,
+    );
+
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      if (data['status'] == true) {
+        nameController.text = data['data']['name'];
+        emailController.text = data['data']['email'];
+        mobileController.text = data['data']['mobile'];
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iot_application/controllers/user_controller.dart';
 import 'package:iot_application/views/screens/Auth/login_screen.dart';
+import 'package:iot_application/views/screens/Screen/home_screen.dart';
 import 'package:iot_application/views/screens/Settings/about_screen.dart';
 import 'package:iot_application/views/screens/Settings/change_password_screen.dart';
 import 'package:iot_application/views/screens/Settings/privacypolicy_screen.dart';
@@ -25,6 +26,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: const Color(0xFF282725),
         appBar: AppBar(
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeWidget(),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: Colors.white,
+            ),
+          ),
           title: const Text(
             'Settings',
             style: TextStyle(
@@ -191,12 +206,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   bool res = await userController.logout();
                   debugPrint(res.toString());
                   if (res == true) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyHomePage(),
-                      ),
+                    Get.to(
+                      const MyHomePage(),
                     );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const MyHomePage(),
+                    //   ),
+                    // );
                   } else {
                     Get.snackbar('Error', 'Server Error');
                   }

@@ -6,6 +6,7 @@ import 'package:iot_application/views/screens/Screen/home_screen.dart';
 import 'package:iot_application/views/screens/Settings/settings_screen.dart';
 import 'package:iot_application/views/widgets/carousel.dart';
 import 'package:iot_application/views/widgets/glass.dart';
+import 'package:iot_application/views/widgets/timer.dart';
 
 class FindDevice extends StatefulWidget {
   const FindDevice({super.key, required this.id});
@@ -80,6 +81,7 @@ class _FindDeviceState extends State<FindDevice> {
                     const SizedBox(
                       height: 50,
                     ),
+                    const TimerWidget(),
                   ],
                 ),
               ),

@@ -80,105 +80,97 @@ class _TimerWidgetState extends State<TimerWidget> {
 
     return SingleChildScrollView(
       child: Center(
-        child: Container(
-          height: 220,
-          width: 420,
-          decoration: const BoxDecoration(
-            color: Color(0xFF282725),
-          ),
-          child: Stack(
-            children: [
-              Center(
-                child: GlassMorphismWidget(
-                  height: 200,
-                  width: 400,
-                  box: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: "${seconds.toString().padLeft(2, '0')} ",
-                                style: const TextStyle(
-                                    fontSize: 80, color: Colors.white),
-                              ),
-                              const TextSpan(
-                                text: "sec",
-                                style: TextStyle(
-                                    fontSize: 30,
-                                    color:
-                                        Colors.white), // Smaller text for "sec"
-                              ),
-                            ],
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                  text:
-                                      "${minutes.toString().padLeft(2, '0')} ",
-                                  style: const TextStyle(
-                                      fontSize: 80, color: Colors.white)),
-                              const TextSpan(
-                                text: "min",
-                                style: TextStyle(
-                                    fontSize: 30, color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: 20,
-                left: 200,
-                child: GlassMorphismWidget(
-                  height: 70,
-                  width: 200,
-                  box: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+        child: Stack(
+          children: [
+            Center(
+              child: GlassMorphismWidget(
+                height: 200,
+                width: 400,
+                box: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
                     children: [
-                      IconButton(
-                        onPressed: increaseTime,
-                        icon: const Icon(
-                          Icons.rotate_right_outlined,
-                          size: 45,
-                          color: Color(0xFFB9B8B8),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "${seconds.toString().padLeft(2, '0')} ",
+                              style: const TextStyle(
+                                  fontSize: 70, color: Colors.white),
+                            ),
+                            const TextSpan(
+                              text: "sec",
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  color:
+                                      Colors.white), // Smaller text for "sec"
+                            ),
+                          ],
                         ),
+                        textAlign: TextAlign.center,
                       ),
-                      IconButton(
-                        onPressed: startTimer,
-                        icon: const Icon(
-                          Icons.play_arrow_rounded,
-                          size: 50,
-                          color: Color(0xFFB9B8B8),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: decreaseTime,
-                        icon: const Icon(
-                          Icons.rotate_left_outlined,
-                          size: 45,
-                          color: Color(0xFFB9B8B8),
+                      // const SizedBox(
+                      //   height: 10 ,
+                      // ),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: "${minutes.toString().padLeft(2, '0')} ",
+                                style: const TextStyle(
+                                    fontSize: 70, color: Colors.white)),
+                            const TextSpan(
+                              text: "min",
+                              style:
+                                  TextStyle(fontSize: 30, color: Colors.white),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            Positioned(
+              bottom: 20,
+              left: 200,
+              child: GlassMorphismWidget(
+                height: 70,
+                width: 200,
+                box: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: increaseTime,
+                      icon: const Icon(
+                        Icons.rotate_right_outlined,
+                        size: 45,
+                        color: Color(0xFFB9B8B8),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: startTimer,
+                      icon: const Icon(
+                        Icons.play_arrow_rounded,
+                        size: 50,
+                        color: Color(0xFFB9B8B8),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: decreaseTime,
+                      icon: const Icon(
+                        Icons.rotate_left_outlined,
+                        size: 45,
+                        color: Color(0xFFB9B8B8),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

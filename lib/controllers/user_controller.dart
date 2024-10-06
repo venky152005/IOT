@@ -96,8 +96,9 @@ class UserController extends GetxController {
     }
   }
 
-  logout() async {
+  Future<bool> logout() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.clear();
+    bool result = await preferences.clear();
+    return result;
   }
 }

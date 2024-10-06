@@ -188,7 +188,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const Divider(),
               ListTile(
                 onTap: () async {
-                  var res = await userController.logout();
+                  bool res = await userController.logout();
                   debugPrint(res.toString());
                   if (res == true) {
                     Navigator.push(

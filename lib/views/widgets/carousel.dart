@@ -23,10 +23,10 @@ class SliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
           ),
-          height: 350,
+          height: 190,
           width: 400,
           child: GlassMorphismWidget(
-            height: 350,
+            height: 190,
             width: 400,
             box: Container(
               margin: const EdgeInsets.all(10),
@@ -114,10 +114,10 @@ class SliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
           ),
-          height: 350,
+          height: 190,
           width: 400,
           child: GlassMorphismWidget(
-            height: 350,
+            height: 190,
             width: 400,
             box: Container(
               margin: const EdgeInsets.all(10),
@@ -205,10 +205,10 @@ class SliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
           ),
-          height: 350,
+          height: 190,
           width: 400,
           child: GlassMorphismWidget(
-            height: 350,
+            height: 190,
             width: 400,
             box: Container(
               margin: const EdgeInsets.all(10),
@@ -296,10 +296,10 @@ class SliderWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
           ),
-          height: 350,
+          height: 190,
           width: 400,
           child: GlassMorphismWidget(
-            height: 350,
+            height: 190,
             width: 400,
             box: Container(
               margin: const EdgeInsets.all(10),

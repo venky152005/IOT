@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
 
     if (token == null) {
     } else {
-      Get.offAll(const HomeWidget());
+      Get.offAll(HomeWidget());
     }
   }
 
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       // home: const TimerWidget(),
-      home: token == null ? const MyHomePage() : const HomeWidget(),
+      home: token == null ? const LoginScreen() : HomeWidget(),
     );
   }
 }

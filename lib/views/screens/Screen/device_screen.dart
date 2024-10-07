@@ -41,7 +41,7 @@ class DeviceWidget extends StatelessWidget {
                       'Ultrasonic Generator',
                       style: TextStyle(
                           color: Color(0xFFFFFFFF),
-                          fontSize: 30,
+                          fontSize: 20,
                           fontFamily: 'ClashDisplay'),
                     ),
                     SizedBox(
@@ -71,7 +71,7 @@ class DeviceWidget extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'ClashDisplay',
-                                      fontSize: 20),
+                                      fontSize: 15),
                                 ),
                               ),
                               Text(
@@ -79,7 +79,7 @@ class DeviceWidget extends StatelessWidget {
                                 style: TextStyle(
                                   color: Color(0xFFD9FE74),
                                   fontFamily: 'ClashDisplay',
-                                  fontSize: 20,
+                                  fontSize: 15,
                                 ),
                               ),
                             ],
@@ -99,7 +99,7 @@ class DeviceWidget extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'ClashDisplay',
-                                      fontSize: 20),
+                                      fontSize: 15),
                                 ),
                               ),
                               Text(
@@ -108,7 +108,7 @@ class DeviceWidget extends StatelessWidget {
                                 style: TextStyle(
                                   color: Color(0xFFD9FE74),
                                   fontFamily: 'ClashDisplay',
-                                  fontSize: 20,
+                                  fontSize: 15,
                                 ),
                               ),
                             ],
@@ -128,10 +128,11 @@ class DeviceWidget extends StatelessWidget {
                         children: [
                           const SizedBox(
                             child: Text(
+                              textAlign: TextAlign.center,
                               '      Monthly Expenses',
                               style: TextStyle(
                                   fontFamily: 'ClashDisplay',
-                                  fontSize: 25,
+                                  fontSize: 20,
                                   color: Colors.white),
                             ),
                           ),
@@ -141,8 +142,8 @@ class DeviceWidget extends StatelessWidget {
                               Image.asset(
                                 'icons/arrow_down.png',
                                 color: Colors.green,
-                                height: 50,
-                                width: 50,
+                                height: 40,
+                                width: 40,
                               ),
                               const Column(
                                 children: [
@@ -150,14 +151,14 @@ class DeviceWidget extends StatelessWidget {
                                     'December',
                                     style: TextStyle(
                                         fontFamily: 'ClashDisplay',
-                                        fontSize: 25,
+                                        fontSize: 20,
                                         color: Colors.white),
                                   ),
                                   Text(
                                     '100 . 5 kwh',
                                     style: TextStyle(
                                       fontFamily: 'ClashDisplay',
-                                      fontSize: 20,
+                                      fontSize: 15,
                                       color: Color.fromRGBO(100, 181, 246, 1),
                                     ),
                                   ),
@@ -167,7 +168,7 @@ class DeviceWidget extends StatelessWidget {
                                 '100 Kwh',
                                 style: TextStyle(
                                   fontFamily: 'ClashDisplay',
-                                  fontSize: 25,
+                                  fontSize: 20,
                                   color: Colors.white,
                                 ),
                               ),
@@ -179,8 +180,8 @@ class DeviceWidget extends StatelessWidget {
                               Image.asset(
                                 'icons/arrow_up.png',
                                 color: Colors.red,
-                                height: 50,
-                                width: 50,
+                                height: 40,
+                                width: 40,
                               ),
                               const Column(
                                 children: [
@@ -188,14 +189,14 @@ class DeviceWidget extends StatelessWidget {
                                     'November',
                                     style: TextStyle(
                                         fontFamily: 'ClashDisplay',
-                                        fontSize: 25,
+                                        fontSize: 20,
                                         color: Colors.white),
                                   ),
                                   Text(
                                     '156 . 3 kwh',
                                     style: TextStyle(
                                       fontFamily: 'ClashDisplay',
-                                      fontSize: 20,
+                                      fontSize: 15,
                                       color: Color.fromRGBO(100, 181, 246, 1),
                                     ),
                                   ),
@@ -205,7 +206,7 @@ class DeviceWidget extends StatelessWidget {
                                 '200 Kwh',
                                 style: TextStyle(
                                   fontFamily: 'ClashDisplay',
-                                  fontSize: 25,
+                                  fontSize: 20,
                                   color: Colors.white,
                                 ),
                               ),
@@ -232,7 +233,7 @@ class DeviceWidget extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomeWidget(),
+                              builder: (context) => HomeWidget(),
                             ),
                           );
                         },

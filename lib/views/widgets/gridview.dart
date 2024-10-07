@@ -83,14 +83,14 @@ class PositionWidget extends StatelessWidget {
     return Stack(
       children: [
         GlassMorphismWidget(
-          height: 500,
+          height: 600,
           width: 250,
           box: Column(
             children: [
               Center(
                 child: Image.asset(
                   link,
-                  height: 160,
+                  height: 120,
                   width: 180,
                   fit: BoxFit.cover,
                 ),

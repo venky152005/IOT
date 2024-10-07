@@ -10,15 +10,15 @@ import 'package:iot_application/views/screens/Screen/home_screen.dart';
 import 'package:iot_application/views/screens/Auth/otp_screen.dart';
 import 'package:iot_application/views/screens/Auth/signup_screen.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<LoginScreen> createState() => _LoginScreen();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+class _LoginScreen extends State<LoginScreen> {
+  final _formkey = GlobalKey<FormState>();
   bool _obscureText = true;
 
   final authController = Get.put(AuthController());
@@ -30,9 +30,9 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: const Color(0xFF282725),
         body: SingleChildScrollView(
           child: Form(
-            key: formkey,
+            key: _formkey,
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.95,
+              height: MediaQuery.of(context).size.height * 0.90,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
-                        padding: EdgeInsets.only(top: 100, left: 20),
+                        padding: EdgeInsets.only(top: 40, left: 20),
                         child: Text(
                           'Login',
                           style: TextStyle(
@@ -56,8 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(color: Color(0xFFFFFFFF)),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -66,45 +66,48 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.005,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: TextFormField(
-                          controller: authController.emailController,
-                          style: const TextStyle(color: Colors.white),
-                          validator: (email) {
-                            if (email!.isEmpty) {
-                              return 'Please Enter Your Email';
-                            } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
-                                .hasMatch(email)) {
-                              return 'Not a valid email';
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Color(0xFFB9B8B8)),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Color(0xFFB9B8B8)),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            hintText: 'Enter Your Email ID',
-                            labelText: 'Email ID',
-                            prefixIcon: const Icon(
-                              Icons.email_outlined,
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          child: TextFormField(
+                            controller: authController.emailController,
+                            style: const TextStyle(color: Colors.white),
+                            validator: (email) {
+                              if (email!.isEmpty) {
+                                return 'Please Enter Your Email';
+                              } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
+                                  .hasMatch(email)) {
+                                return 'Not a valid email';
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Color(0xFFB9B8B8)),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Color(0xFFB9B8B8)),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              hintText: 'Enter Your Email ID',
+                              labelText: 'Email ID',
+                              prefixIcon: const Icon(
+                                Icons.email_outlined,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -113,54 +116,57 @@ class _MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.005,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: TextFormField(
-                          controller: authController.passwordController,
-                          style: const TextStyle(color: Colors.white),
-                          obscureText: _obscureText,
-                          validator: (password) {
-                            if (password!.isEmpty) {
-                              return 'Please Enter Your Password';
-                            } else if (password.length < 8 ||
-                                password.length > 15) {
-                              return 'Not a valid password';
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Color(0xFFB9B8B8)),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  const BorderSide(color: Color(0xFFB9B8B8)),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            hintText: 'Password',
-                            labelText: 'Enter Password',
-                            prefixIcon: const Icon(Icons.lock_outline),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                              child: Icon(_obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          child: TextFormField(
+                            controller: authController.passwordController,
+                            style: const TextStyle(color: Colors.white),
+                            obscureText: _obscureText,
+                            validator: (password) {
+                              if (password!.isEmpty) {
+                                return 'Please Enter Your Password';
+                              } else if (password.length < 8 ||
+                                  password.length > 15) {
+                                return 'Not a valid password';
+                              } else {
+                                return null;
+                              }
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Color(0xFFB9B8B8)),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Color(0xFFB9B8B8)),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              hintText: 'Password',
+                              labelText: 'Enter Password',
+                              prefixIcon: const Icon(Icons.lock_outline),
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _obscureText = !_obscureText;
+                                  });
+                                },
+                                child: Icon(_obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -181,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 'Forgot Password ??',
                                 style: TextStyle(
                                   color: Color(0xFFD9FE74),
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontFamily: 'ClashDisplay',
                                   decoration: TextDecoration.underline,
                                   decorationColor: Color(0xFFD9FE74),
@@ -208,12 +214,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
                                       color: const Color(0xFFD9FE74)),
-                                  height: 50,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.07,
                                   width: MediaQuery.of(context).size.width,
                                   child: TextButton(
                                     onPressed: () async {
-                                      if (formkey.currentState!.validate()) {
-                                        formkey.currentState!.save();
+                                      if (_formkey.currentState!.validate()) {
+                                        _formkey.currentState!.save();
 
                                         if ((authController.emailController.text
                                                     .isEmpty ==
@@ -235,44 +242,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                                     .isVerified.value ==
                                                 true) {
                                               Get.to(
-                                                const HomeWidget(),
+                                                () => HomeWidget(),
                                               );
-                                              // Navigator.push(
-                                              //   context,
-                                              //   MaterialPageRoute(
-                                              //     builder: (context) =>
-                                              //         const HomeWidget(),
-                                              //   ),
-                                              // );
                                             } else {
                                               Get.to(
                                                 () => const OtpWidget(),
                                               );
-                                              // Navigator.push(
-                                              //   context,
-                                              //   MaterialPageRoute(
-                                              //       builder: (context) =>
-                                              //           const OtpWidget()),
-                                              // );
                                             }
                                           }
                                         }
-                                        // if (_email == 'venky15.12.2005@gmail.com' &&
-                                        //     _password == 'venky152005') {
-                                        //   Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //       builder: (context) => const FindDevice(),
-                                        //     ),
-                                        //   );
-                                        // } else {
-                                        //   ScaffoldMessenger.of(context).showSnackBar(
-                                        //     const SnackBar(
-                                        //       content:
-                                        //           Text('Invalid Username or Password'),
-                                        //     ),
-                                        //   );
-                                        // }
                                       }
                                     },
                                     child: const Text(
@@ -284,8 +262,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               );
                       }),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Center(
                         child: Container(
@@ -296,15 +274,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: const Color(0xFFD9FE74),
                             ),
                           ),
-                          height: 50,
+                          height: MediaQuery.of(context).size.height * 0.07,
                           width: MediaQuery.of(context).size.width,
                           child: TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignUpWidget(),
-                                ),
+                              Get.off(
+                                const SignUpWidget(),
                               );
                             },
                             child: const Text(

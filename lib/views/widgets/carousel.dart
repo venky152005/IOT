@@ -34,11 +34,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
               ),
-              height: 220,
-              width: 400,
+              height: MediaQuery.of(context).size.height * 0.27,
+              width: double.infinity,
               child: GlassMorphismWidget(
-                height: 220,
-                width: 400,
+                height: MediaQuery.of(context).size.height * 0.27,
+                width: MediaQuery.of(context).size.width,
                 box: Container(
                   margin: const EdgeInsets.all(10),
                   child: Column(
@@ -48,12 +48,12 @@ class _SliderWidgetState extends State<SliderWidget> {
                       Text(
                         DateFormat.yMEd().format(DateTime.now()),
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
+                            const TextStyle(color: Colors.white, fontSize: 8),
                       ),
                       const Text(
                         'Frequency',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -66,7 +66,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 widget.frequency,
                                 style: const TextStyle(
                                   color: Color(0xFFD9FE74),
-                                  fontSize: 50,
+                                  fontSize: 40,
                                   fontWeight: FontWeight.w100,
                                 ),
                               ),
@@ -77,7 +77,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 'khz',
                                 style: TextStyle(
                                     color: Color(0xFFFFFFFF),
-                                    fontSize: 50,
+                                    fontSize: 40,
                                     fontFamily: 'ClashDisplay',
                                     fontWeight: FontWeight.w400),
                               ),
@@ -89,8 +89,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/heartbeat.png',
                             color: const Color(0xFFD9FE74),
-                            height: 70,
-                            width: 70,
+                            height: 60,
+                            width: 60,
                           ),
                         ],
                       ),
@@ -99,7 +99,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                           const Text(
                             '15%',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white),
                           ),
@@ -109,8 +109,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/graph_loss.png',
                             color: const Color(0xFFD9FE74),
-                            height: 20,
-                            width: 20,
+                            height: 15,
+                            width: 15,
                           )
                         ],
                       ),
@@ -127,11 +127,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
               ),
-              height: 220,
-              width: 400,
+              height: MediaQuery.of(context).size.height * 0.27,
+              width: MediaQuery.of(context).size.width,
               child: GlassMorphismWidget(
-                height: 220,
-                width: 400,
+                height: MediaQuery.of(context).size.height * 0.27,
+                width: MediaQuery.of(context).size.width,
                 box: Container(
                   margin: const EdgeInsets.all(10),
                   child: Column(
@@ -141,12 +141,12 @@ class _SliderWidgetState extends State<SliderWidget> {
                       Text(
                         DateFormat.yMEd().format(DateTime.now()),
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
+                            const TextStyle(color: Colors.white, fontSize: 8),
                       ),
                       const Text(
                         'Electricity',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -159,7 +159,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 widget.ampere,
                                 style: const TextStyle(
                                   color: Color(0xFFD9FE74),
-                                  fontSize: 50,
+                                  fontSize: 40,
                                   fontWeight: FontWeight.w100,
                                 ),
                               ),
@@ -170,7 +170,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 'kwh',
                                 style: TextStyle(
                                     color: Color(0xFFFFFFFF),
-                                    fontSize: 50,
+                                    fontSize: 40,
                                     fontFamily: 'ClashDisplay',
                                     fontWeight: FontWeight.w400),
                               ),
@@ -182,8 +182,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/charge.png',
                             color: const Color(0xFFD9FE74),
-                            height: 70,
-                            width: 70,
+                            height: 60,
+                            width: 60,
                           ),
                         ],
                       ),
@@ -192,7 +192,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                           const Text(
                             '15%',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white),
                           ),
@@ -202,8 +202,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/graph_loss.png',
                             color: const Color(0xFFD9FE74),
-                            height: 20,
-                            width: 20,
+                            height: 15,
+                            width: 15,
                           )
                         ],
                       ),
@@ -220,11 +220,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
               ),
-              height: 220,
-              width: 400,
+              height: MediaQuery.of(context).size.height * 0.27,
+              width: MediaQuery.of(context).size.width,
               child: GlassMorphismWidget(
-                height: 220,
-                width: 400,
+                height: MediaQuery.of(context).size.height * 0.27,
+                width: MediaQuery.of(context).size.width,
                 box: Container(
                   margin: const EdgeInsets.all(10),
                   child: Column(
@@ -234,12 +234,12 @@ class _SliderWidgetState extends State<SliderWidget> {
                       Text(
                         DateFormat.yMEd().format(DateTime.now()),
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
+                            const TextStyle(color: Colors.white, fontSize: 8),
                       ),
                       const Text(
                         'Temperature',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -252,7 +252,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 widget.temperature,
                                 style: const TextStyle(
                                   color: Color(0xFFD9FE74),
-                                  fontSize: 50,
+                                  fontSize: 40,
                                   fontWeight: FontWeight.w100,
                                 ),
                               ),
@@ -263,7 +263,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 '°C',
                                 style: TextStyle(
                                     color: Color(0xFFFFFFFF),
-                                    fontSize: 50,
+                                    fontSize: 40,
                                     fontFamily: 'ClashDisplay',
                                     fontWeight: FontWeight.w400),
                               ),
@@ -275,8 +275,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/celsius.png',
                             color: const Color(0xFFD9FE74),
-                            height: 70,
-                            width: 70,
+                            height: 60,
+                            width: 60,
                           ),
                         ],
                       ),
@@ -285,7 +285,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                           const Text(
                             '15%',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white),
                           ),
@@ -295,8 +295,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/graph_loss.png',
                             color: const Color(0xFFD9FE74),
-                            height: 20,
-                            width: 20,
+                            height: 15,
+                            width: 15,
                           )
                         ],
                       ),
@@ -313,11 +313,11 @@ class _SliderWidgetState extends State<SliderWidget> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
               ),
-              height: 220,
-              width: 400,
+              height: MediaQuery.of(context).size.height * 0.27,
+              width: MediaQuery.of(context).size.width,
               child: GlassMorphismWidget(
-                height: 220,
-                width: 400,
+                height: MediaQuery.of(context).size.height * 0.27,
+                width: MediaQuery.of(context).size.width,
                 box: Container(
                   margin: const EdgeInsets.all(10),
                   child: Column(
@@ -327,12 +327,12 @@ class _SliderWidgetState extends State<SliderWidget> {
                       Text(
                         DateFormat.yMEd().format(DateTime.now()),
                         style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
+                            const TextStyle(color: Colors.white, fontSize: 8),
                       ),
                       const Text(
                         'Error',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
@@ -345,7 +345,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 '-------',
                                 style: TextStyle(
                                   color: Color(0xFFD9FE74),
-                                  fontSize: 50,
+                                  fontSize: 40,
                                   fontWeight: FontWeight.w100,
                                 ),
                               ),
@@ -356,7 +356,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                                 '',
                                 style: TextStyle(
                                     color: Color(0xFFFFFFFF),
-                                    fontSize: 50,
+                                    fontSize: 40,
                                     fontFamily: 'ClashDisplay',
                                     fontWeight: FontWeight.w400),
                               ),
@@ -368,8 +368,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/error.png',
                             color: const Color(0xFFD9FE74),
-                            height: 70,
-                            width: 70,
+                            height: 60,
+                            width: 60,
                           ),
                         ],
                       ),
@@ -378,7 +378,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                           const Text(
                             '15%',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white),
                           ),
@@ -388,8 +388,8 @@ class _SliderWidgetState extends State<SliderWidget> {
                           Image.asset(
                             'icons/graph_loss.png',
                             color: const Color(0xFFD9FE74),
-                            height: 20,
-                            width: 20,
+                            height: 15,
+                            width: 15,
                           )
                         ],
                       ),
@@ -408,7 +408,7 @@ class _SliderWidgetState extends State<SliderWidget> {
               pageSnapping: true,
               initialPage: 1,
               autoPlay: true,
-              height: 220,
+              height: MediaQuery.of(context).size.height * 0.27,
               pauseAutoPlayOnTouch: true,
               pauseAutoPlayOnManualNavigate: true,
               aspectRatio: 16 / 9,
@@ -423,21 +423,22 @@ class _SliderWidgetState extends State<SliderWidget> {
                 });
               }),
         ),
-        const SizedBox(
-          height: 20,
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.01,
         ),
         AnimatedSmoothIndicator(
-            activeIndex: _currentIndex,
-            count: 4,
-            effect: const WormEffect(
-              dotHeight: 12,
-              dotWidth: 12,
-              activeDotColor: Color(0xFFD9FE74),
-              dotColor: Color(0xFFB9B8B8),
-            ),
-            onDotClicked: (index) {
-              _controller.animateToPage(index);
-            }),
+          activeIndex: _currentIndex,
+          count: 4,
+          effect: const WormEffect(
+            dotHeight: 8,
+            dotWidth: 8,
+            activeDotColor: Color(0xFFD9FE74),
+            dotColor: Color(0xFFB9B8B8),
+          ),
+          onDotClicked: (index) {
+            _controller.animateToPage(index);
+          },
+        ),
       ],
     );
   }

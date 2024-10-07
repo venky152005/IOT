@@ -88,8 +88,8 @@ class _TimerWidgetState extends State<TimerWidget> {
           children: [
             Center(
               child: GlassMorphismWidget(
-                height: 200,
-                width: 380,
+                height: MediaQuery.of(context).size.height * 0.18,
+                width: MediaQuery.of(context).size.width,
                 box: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
@@ -100,33 +100,28 @@ class _TimerWidgetState extends State<TimerWidget> {
                             TextSpan(
                               text: "${seconds.toString().padLeft(2, '0')} ",
                               style: const TextStyle(
-                                  fontSize: 70, color: Colors.white),
+                                  fontSize: 40, color: Color(0xFFD9FE74)),
                             ),
                             const TextSpan(
                               text: "sec",
                               style: TextStyle(
-                                  fontSize: 30,
-                                  color:
-                                      Colors.white), // Smaller text for "sec"
+                                  fontSize: 20, color: Color(0xFFD9FE74)),
                             ),
                           ],
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      // const SizedBox(
-                      //   height: 10 ,
-                      // ),
                       Text.rich(
                         TextSpan(
                           children: [
                             TextSpan(
                                 text: "${minutes.toString().padLeft(2, '0')} ",
                                 style: const TextStyle(
-                                    fontSize: 70, color: Colors.white)),
+                                    fontSize: 40, color: Color(0xFFD9FE74))),
                             const TextSpan(
                               text: "min",
-                              style:
-                                  TextStyle(fontSize: 30, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 20, color: Color(0xFFD9FE74)),
                             ),
                           ],
                         ),
@@ -136,18 +131,18 @@ class _TimerWidgetState extends State<TimerWidget> {
                 ),
               ),
             ),
-            const Positioned(
-              top: 20,
-              left: 200,
+            Positioned(
+              top: 10,
+              left: 140,
               child: GlassMorphismWidget(
-                height: 70,
-                width: 190,
-                box: Row(
+                height: MediaQuery.of(context).size.height * 0.07,
+                width: MediaQuery.of(context).size.width * 0.50,
+                box: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(4),
+                      padding: EdgeInsets.all(6),
                       child: Text(
                         textAlign: TextAlign.center,
                         'Target Time',
@@ -155,7 +150,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                           color: Color(0xFFB9B8B8),
                           fontFamily: 'ClashDisplay',
                           fontWeight: FontWeight.w400,
-                          fontSize: 28,
+                          fontSize: 20,
                         ),
                       ),
                     )
@@ -164,11 +159,11 @@ class _TimerWidgetState extends State<TimerWidget> {
               ),
             ),
             Positioned(
-              bottom: 20,
-              left: 200,
+              bottom: 10,
+              left: 133,
               child: GlassMorphismWidget(
-                height: 70,
-                width: 190,
+                height: MediaQuery.of(context).size.height * 0.07,
+                width: MediaQuery.of(context).size.width * 0.52,
                 box: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

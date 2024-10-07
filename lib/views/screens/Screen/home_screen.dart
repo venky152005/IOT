@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:iot_application/views/screens/Settings/about_screen.dart';
-import 'package:iot_application/views/widgets/glass.dart';
+import 'package:get/get.dart';
+import 'package:iot_application/controllers/user_controller.dart';
+import 'package:iot_application/views/screens/Auth/login_screen.dart';
 import 'package:iot_application/views/widgets/gridview.dart';
 
 class HomeWidget extends StatelessWidget {
-  const HomeWidget({super.key});
+  HomeWidget({super.key});
+
+  final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +41,31 @@ class HomeWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Ultrasonic Generator',
-                          style:
-                              TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Center(
+                              child: Text(
+                                'Ultrasonic Generator',
+                                style: TextStyle(
+                                    color: Color(0xFFFFFFFF), fontSize: 25),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.02,
+                            ),
+                            IconButton(
+                                onPressed: () async {
+                                  userController.logout();
+                                  Get.off(
+                                    const LoginScreen(),
+                                  );
+                                },
+                                icon: const Icon(
+                                  Icons.logout,
+                                  color: Color(0xFFB9B8B8),
+                                ))
+                          ],
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.03,

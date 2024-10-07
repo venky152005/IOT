@@ -19,8 +19,8 @@ class BarChartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.37,
-        width: MediaQuery.of(context).size.width * 0.98,
+        height: MediaQuery.of(context).size.height * 0.35,
+        width: MediaQuery.of(context).size.width * 0.95,
         child: MyBarGraph(
           weeksummary: weeksummary,
         ),

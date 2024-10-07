@@ -81,7 +81,10 @@ class _FindDeviceState extends State<FindDevice> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),
-                    const TimerWidget(),
+                    const Padding(
+                      padding: EdgeInsets.all(15),
+                      child: TimerWidget(),
+                    ),
                   ],
                 ),
               ),
@@ -100,7 +103,7 @@ class _FindDeviceState extends State<FindDevice> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const HomeWidget(),
+                              builder: (context) => HomeWidget(),
                             ),
                           );
                         },
